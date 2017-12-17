@@ -4,19 +4,61 @@
   box-sizing: border-box;
 }
 
+h3 {
+  margin: 5px 0;
+}
+
+i {
+  color: red;
+}
+
 .App {
   text-align: center;
 }
 
 .maybes, .faves {
-  min-width: 80px;
-  min-height: 400px;
+  min-width: 240px;
+  min-height: 200px;
   border: 1px solid black;
   display: inline-block;
-  margin: 0 50px;
+  margin: 20px 50px;
   vertical-align: top;
+  padding: 10px;
+  border-radius: 1.2em;
+  background-color: #C1ECFF;
+  color: grey;
+}
+
+.buttonwrap {
+  display: inline-block;
+}
+
+.restobar button, .restobar p{
+  display: inline-block;
+  margin: 0 5px;
+  border: none;
+  color: white;
+}
+
+.restobar p {
+  min-width: 75px;
+}
+
+.restobar button i {
+  color: white;
+  background-color: #EB918E;
+  /*line-height: 33px;*/
+  font-size: 17px;
 }
 
 .restobar {
-
+  border: 1px solid grey;
+  width: 80%;
+  margin: 2px auto;
+  height: 35px;
+  line-height: 35px;
+  background-color: #EB918E;
+  text-align: left;
+  padding-left: 10px;
+  border-radius: 5px;
 }

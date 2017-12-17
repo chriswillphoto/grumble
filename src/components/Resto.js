@@ -6,7 +6,7 @@ class Resto extends Component {
     super(props)
 
     this.clickHandler = this.clickHandler.bind(this)
-    console.log(this.props)
+    // console.log(this.props)
   }
 
   clickHandler(e){
@@ -16,8 +16,13 @@ class Resto extends Component {
 
   render(){
     return(
-      <div className="restobar" onClick={ () => {this.clickHandler(this.props.id)} }>
+      <div className="restobar" >
         <p>{this.props.name}</p>
+        {this.props.iconClass ?
+          <div className="buttonwrap">
+          <button><i className="fa fa-trash-o fa-2x" /></button>
+          <button onClick={ () => {this.clickHandler(this.props.id)} }><i className="fa fa-heart-o fa-2x"/></button></div>
+           : ""}
       </div>
     )
   }
