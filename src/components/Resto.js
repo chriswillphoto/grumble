@@ -5,13 +5,18 @@ class Resto extends Component {
   constructor(props){
     super(props)
 
-    this.clickHandler = this.clickHandler.bind(this)
+    this.faveHandler = this.faveHandler.bind(this)
+    this.trashHandler = this.trashHandler.bind(this)
     // console.log(this.props)
   }
 
-  clickHandler(e){
-    this.props.clicky(e)
+  faveHandler(e){
+    this.props.favey(e)
     // console.log(e)
+  }
+
+  trashHandler(e){
+    this.props.trashy(e)
   }
 
   render(){
@@ -20,8 +25,8 @@ class Resto extends Component {
         <p>{this.props.name}</p>
         {this.props.iconClass ?
           <div className="buttonwrap">
-          <button><i className="fa fa-trash-o fa-2x" /></button>
-          <button onClick={ () => {this.clickHandler(this.props.id)} }><i className="fa fa-heart-o fa-2x"/></button></div>
+          <button onClick={ () => { this.trashHandler(this.props.id) } }><i className="fa fa-trash-o fa-2x" /></button>
+          <button onClick={ () => {this.faveHandler(this.props.id)} }><i className="fa fa-heart-o fa-2x"/></button></div>
            : ""}
       </div>
     )
