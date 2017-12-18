@@ -30,7 +30,7 @@ class Faves extends Component {
     this.setState({maybes: oldm, faves: oldf})
   }
 
-  trashHandle(e){
+  trashMaybe(e){
     const maybs = this.state.maybes.slice()
     const obj = maybs.find(m => m.id === e)
     const index = maybs.indexOf( obj )
@@ -38,21 +38,29 @@ class Faves extends Component {
     this.setState({maybes: maybs})
   }
 
+  trashFave(e){
+    const faves = this.state.faves.slice()
+    const obj = faves.find(f => f.id === e)
+    const index = faves.indexOf( obj )
+    faves.splice(index, 1)
+    this.setState({faves})
+  }
+
   render(){
     return(
       <div>
-
+        <h1 className="profileHeading">Hello, Current User</h1>
         <div className="maybes">
           <h3>Maybes</h3>
           {this.state.maybes.map( (m) => {
-            return <Resto key={m.id} id={m.id} name={m.name} favey={(e) => {this.faveHandle(e)} } trashy={(e) => {this.trashHandle(e)}} iconClass={true} />
+            return <Resto key={m.id} id={m.id} name={m.name} favey={(e) => {this.faveHandle(e)} } trashy={(e) => {this.trashMaybe(e)}} iconClass={"maybe"} />
           } )}
         </div>
 
         <div className="faves">
           <h3>Faves</h3>
           {this.state.faves.map( (f) => {
-            return <Resto key={f.id} id={f.id} name={f.name} />
+            return <Resto key={f.id} id={f.id} name={f.name} trashy={(e) => {this.trashFave(e)}}/>
           } )}
         </div>
 

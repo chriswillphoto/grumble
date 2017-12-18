@@ -4,8 +4,8 @@
   box-sizing: border-box;
 }
 
-h3 {
-  margin: 5px 0;
+div h3 {
+  margin: 5px 0 15px 0;
 }
 
 i {
@@ -14,6 +14,10 @@ i {
 
 .App {
   text-align: center;
+}
+
+.profileHeading {
+  margin: 20px 0;
 }
 
 .maybes, .faves {
@@ -45,7 +49,7 @@ i {
 }
 
 .restobar p {
-  min-width: 75px;
+  min-width: 85px;
 }
 
 .restobar button i {
