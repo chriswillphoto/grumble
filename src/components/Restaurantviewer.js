@@ -16,9 +16,8 @@ class Restaurantviewer extends Component {
   render () {
     return (
       <div>
-        <a className="imageHeading" href="#">{this.props.matched.name}</a>
-        <div className="headerBox"></div>
         <img className="imageSlider" src={this.props.matched.image} />
+        <a className="imageHeading" href="#"><i class="fa fa-info fa-1x"></i> {this.props.matched.name}</a>
         <div className="tinderButtons">
           <button id="no" onClick = { (e) => {this.handleClick(e, "no")} }><i class="fa fa-times fa-5x"></i></button>
           <button id="fave" onClick = { (e) => {this.handleClick(e, "fave")} }><i class="fa fa-heart fa-4x"></i></button>

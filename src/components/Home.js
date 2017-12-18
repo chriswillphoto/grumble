@@ -27,7 +27,7 @@ class Home extends Component {
   qHandle(e){
     // console.log(e)
     this.setState({suburb: e.suburb});
-    const filtered = this.state.rests.filter(rest => rest.suburb === e.suburb)
+    const filtered = this.state.rests.filter(rest => rest.suburb === e.suburb.toLowerCase())
     this.setState({matched: filtered})
   }
 
