@@ -1,7 +1,11 @@
 import React, { PureComponent as Component } from 'react';
 import Searchbar from './Searchbar';
+<<<<<<< HEAD
 import Restaurantviewer from './Restaurantviewer';
 
+=======
+import { Link } from 'react-router-dom';
+>>>>>>> 4bba471bd6462d790aad5ed3d109909f8e175ada
 
 class Home extends Component {
   constructor () {
@@ -30,6 +34,10 @@ class Home extends Component {
         <h1>Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
         {this.state.suburb ? <Restaurantviewer matched={this.state.matched[0]}/> : "" }
+        <div>
+        <h1><Link to="/">Home</Link> </h1>
+        <p><Link to="/faves">User Page</Link></p>
+      </div>
       </div>
     );
   }

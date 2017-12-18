@@ -1,6 +1,7 @@
 import React, { PureComponent as Component} from 'react'
 import axios from 'axios'
 
+
 class Resto extends Component {
   constructor(props){
     super(props)
@@ -23,11 +24,16 @@ class Resto extends Component {
     return(
       <div className="restobar" >
         <p>{this.props.name}</p>
-        {this.props.iconClass ?
+        {this.props.iconClass === "maybe" ?
           <div className="buttonwrap">
           <button onClick={ () => { this.trashHandler(this.props.id) } }><i className="fa fa-trash-o fa-2x" /></button>
-          <button onClick={ () => {this.faveHandler(this.props.id)} }><i className="fa fa-heart-o fa-2x"/></button></div>
-           : ""}
+          <button onClick={ () => {this.faveHandler(this.props.id)} }><i className="fa fa-heart-o fa-2x"/></button>
+          </div>
+           :
+          <div className="buttonwrap">
+          <button onClick={ () => { this.trashHandler(this.props.id) } }><i className="fa fa-trash-o fa-2x" /></button>
+          </div>
+         }
       </div>
     )
   }
