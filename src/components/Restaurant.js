@@ -15,35 +15,28 @@ class Restaurant extends Component {
       resto_id: match.params.restaurantId
      };
 
-     // this.setState({resto_id: match.params.restaurantId})
-
     axios.get( SERVER_URL + this.state.resto_id ).then( results => {
       this.setState({res_info: results.data})
       console.log(results.data)
     });
   }
 
-// , restaurantId: match.params.restaurantId
-
-// createRestaurant( name, address, suburb, price, opening_hours, image ) {
-//   axios.post(SERVER_URL, { name: name, address: address, suburb: suburb, price: price, opening_hours: opening_hours, image: image }).then(results =>
-//   {
-//     this.setState({ restaurants: [results.data,
-//     ...this.state.restaurants] })
-//   });
-// }
-
   render() {
     return(
       <div>
-        <h1>Restaurant Name</h1>
-        <p>{this.state.res_info.name}</p>
-        <h3>Descript</h3>
+        <h1>{this.state.res_info.name}</h1>
+        <h3>Address</h3>
+        <p>{this.state.res_info.address}</p>
+        <h3>Price Range</h3>
+        <p>{this.state.res_info.price}</p>
+        <h3>Opening Hours</h3>
+        <p>{this.state.res_info.opening_hours}</p>
+        <h3>Description</h3>
         <p>{this.state.res_info.description}</p>
-
+        <img src= {this.state.res_info.image} />
       </div>
     );
   }
 }
 
-export default Restaurant;
+  export default Restaurant;

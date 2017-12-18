@@ -4,7 +4,6 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Faves from './components/Faves';
 import Restaurant from './components/Restaurant';
-// import RestaurantDetails from './components/RestaurantDetails';
 
 const Routes = (
   <Router>
