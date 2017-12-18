@@ -2,6 +2,8 @@ import React, { PureComponent as Component } from 'react';
 import Searchbar from './Searchbar';
 import Restaurantviewer from './Restaurantviewer';
 import { Link } from 'react-router-dom';
+import axios from 'axios'
+import Restaurant from './Restaurant'
 
 
 class Home extends Component {
@@ -16,6 +18,10 @@ class Home extends Component {
     }
 
     this.qHandle = this.qHandle.bind(this)
+    axios.get("http://localhost:5000/restaurants").then(res => {
+      this.setState({rests: res.data})
+    })
+
   };
 
   qHandle(e){
@@ -62,13 +68,9 @@ class Home extends Component {
   render() {
     return(
       <div>
-        <h1>Grumble</h1>
+        <h1 className="siteHeader">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
         {this.state.matched ? <Restaurantviewer matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : ""}
-        <div>
-        <h1><Link to="/">Home</Link> </h1>
-        <p><Link to="/faves">User Page</Link></p>
-        </div>
       </div>
     );
   }
