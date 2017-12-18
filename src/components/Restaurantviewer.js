@@ -20,9 +20,9 @@ class Restaurantviewer extends Component {
         <div className="headerBox"></div>
         <img className="imageSlider" src={this.props.matched.image} />
         <div className="tinderButtons">
-          <button id="no" onClick = { (e) => {this.handleClick(e, "no")} }>No</button>
-          <button id="fave" onClick = { (e) => {this.handleClick(e, "fave")} }>Fave</button>
-          <button id="yes" onClick = { (e) => {this.handleClick(e, "yes")}  }>Yes</button>
+          <button id="no" onClick = { (e) => {this.handleClick(e, "no")} }><i class="fa fa-times fa-5x"></i></button>
+          <button id="fave" onClick = { (e) => {this.handleClick(e, "fave")} }><i class="fa fa-heart fa-4x"></i></button>
+          <button id="yes" onClick = { (e) => {this.handleClick(e, "yes")}  }><i class="fa fa-check fa-5x"></i></button>
         </div>
       </div>
     );
