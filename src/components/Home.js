@@ -3,6 +3,7 @@ import Searchbar from './Searchbar';
 import Restaurantviewer from './Restaurantviewer';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import Restaurant from './Restaurant'
 
 
 class Home extends Component {
