@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Questrial');
 
+/** {
+  border: green 1px solid;
+}*/
+
 body {
   margin: 0;
   padding: 0;
@@ -10,12 +14,49 @@ body {
 nav {
   background-color: black;
   display: block;
-  height: 40px;
+  height: 46px;
+  width: 100vw;
 }
 
-.navItem {
-  font-size: 10px;
+
+a#navItem1 {
+  font-size: 35px;
   color: white;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  width: 80vw;
+  margin: 5px;
+}
+
+a#navItem:hover {
+  text-decoration: none;
+}
+
+a#navItem2 {
+  font-size: 22px;
+  color: white;
+  text-align: right;
+  text-decoration: none;
+  display: inline-block;
+  width: 8vw;
+}
+
+a#navItem:hover {
+  text-decoration: none;
+}
+
+a#navItem3 {
+  font-size: 22px;
+  color: white;
+  text-align: right;
+  text-decoration: none;
+  display: inline-block;
+  width: 8vw;
+}
+
+a#navItem:hover {
+  text-decoration: none;
 }
 
 .siteHeader {
@@ -24,9 +65,9 @@ nav {
 }
 
 .searchBar {
-  font-size: 40px;
+  font-size: 34px;
     color: black;
-    padding: 40px;
+    padding: 16px;
     display: block;
     margin: auto;
     border: 9px solid black;
