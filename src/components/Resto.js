@@ -1,6 +1,6 @@
 import React, { PureComponent as Component} from 'react'
 import axios from 'axios'
-import ConfirmLink from 'react-confirm-dialog'
+
 
 class Resto extends Component {
   constructor(props){
