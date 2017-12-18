@@ -16,4 +16,13 @@ const Routes = (
   </Router>
 )
 
+function Footer({ children }) {
+    return (
+        <div className="phantom style">
+          <h1>Feet</h1>
+        </div>
+    )
+}
+
+
 export default Routes;
