@@ -1,5 +1,49 @@
+@import url('https://fonts.googleapis.com/css?family=Questrial');
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Questrial', sans-serif;
+  text-align: center;
+}
+
+nav {
+  background-color: black;
+  display: block;
+  height: 40px;
+}
+
+.navItem {
+  font-size: 10px;
+  color: white;
+}
+
+.siteHeader {
+  font-size: 300px;
+  color: black;
+}
+
+.searchBar {
+  font-size: 40px;
+    color: black;
+    padding: 40px;
+    display: block;
+    margin: auto;
+    border: 9px solid black;
+}
+
+.goButton {
+  width: 177px;
+  height: 63px;
+  background-color: navy;
+  border: none;
+  color: white;
+  font-size: 40px;
+  margin: 20px;
+}
+
+label.locationLabel {
+  font-size: 32px;
+  margin-bottom: 20px;
+  display: block;
 }

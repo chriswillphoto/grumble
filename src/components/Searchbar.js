@@ -30,8 +30,9 @@ class Searchbar extends Component {
     return(
       <div>
         <form onSubmit = { this._handleSubmit }>
-          Enter Location: <input type="text" onChange={(event) => this._handleChangeFor(event)} value={this.state.suburb}/>
-          <button>Go</button>
+          <label class="locationLabel">Enter a location:</label>
+          <input class="searchBar" type="text" placeholder="Eg. Surry Hills" onChange={(event) => this._handleChangeFor(event)} value={this.state.suburb}/>
+          <button class="goButton">SEARCH</button>
         </form>
       </div>
     )
