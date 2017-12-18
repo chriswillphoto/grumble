@@ -1,5 +1,5 @@
 import React, { PureComponent as Component } from 'react';
-
+import { Link } from 'react-router-dom';
 
 class RestaurantDetails extends Component {
   constructor( props ) {
@@ -9,7 +9,10 @@ class RestaurantDetails extends Component {
 
   render() {
     return (
-      <h2>{ this.props.match.params.restaurantId }</h2>
+      <div>
+      <h1>Restaurant Name</h1>
+
+      </div>
     )
   }
 }
