@@ -1,11 +1,9 @@
 import React, { PureComponent as Component } from 'react';
 import Searchbar from './Searchbar';
-<<<<<<< HEAD
-import Restaurantviewer from './Restaurantviewer';
 
-=======
+import Restaurantviewer from './Restaurantviewer';
 import { Link } from 'react-router-dom';
->>>>>>> 4bba471bd6462d790aad5ed3d109909f8e175ada
+
 
 class Home extends Component {
   constructor () {
