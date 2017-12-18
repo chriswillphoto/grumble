@@ -1,6 +1,7 @@
 import React, { PureComponent as Component } from 'react';
 import Searchbar from './Searchbar';
 import Restaurantviewer from './Restaurantviewer';
+import RestPopUp from './RestPopUp';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Restaurant from './Restaurant'
@@ -12,7 +13,6 @@ class Home extends Component {
     this.state = {
       suburb: "",
       rests: [
-        {id: 1, suburb: "bondi", name: "whatever"}, {id: 2, suburb: "bondi", name: "test"}, {id: 3, suburb: "chatswood", name: "dno man"}
       ],
       matched: null
     }
@@ -71,6 +71,7 @@ class Home extends Component {
         <h1 className="siteHeader">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
         {this.state.matched ? <Restaurantviewer matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : ""}
+        <RestPopUp />
       </div>
     );
   }
