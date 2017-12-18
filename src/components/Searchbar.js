@@ -16,7 +16,8 @@ class Searchbar extends Component {
 
 
   _handleChangeFor(e) {
-    this.setState( { suburb: e.target.value } );
+
+    this.setState( { suburb: e.target.value.toLowerCase() } );
   }
 
   _handleSubmit(e) {
@@ -30,8 +31,9 @@ class Searchbar extends Component {
     return(
       <div>
         <form onSubmit = { this._handleSubmit }>
-          Enter Location: <input type="text" onChange={(event) => this._handleChangeFor(event)} value={this.state.suburb}/>
-          <button>Go</button>
+          <label className="locationLabel">Enter a location:</label>
+          <input className="searchBar" type="text" placeholder="Eg. Surry Hills" onChange={(event) => this._handleChangeFor(event)} value={this.state.suburb}/>
+          <button className="goButton">SEARCH</button>
         </form>
       </div>
     )
