@@ -17,6 +17,7 @@ class Restaurantviewer extends Component {
     return (
       <div>
         <h1>{this.props.matched.name}</h1>
+        <img src={this.props.matched.image} />
         <div>
           <button onClick = { (e) => {this.handleClick(e, "no")} }>No</button>
           <button onClick = { (e) => {this.handleClick(e, "fave")} }>Fave</button>

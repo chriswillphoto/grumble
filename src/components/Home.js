@@ -2,6 +2,7 @@ import React, { PureComponent as Component } from 'react';
 import Searchbar from './Searchbar';
 import Restaurantviewer from './Restaurantviewer';
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 
 class Home extends Component {
@@ -16,6 +17,10 @@ class Home extends Component {
     }
 
     this.qHandle = this.qHandle.bind(this)
+    axios.get("http://localhost:5000/restaurants").then(res => {
+      this.setState({rests: res.data})
+    })
+
   };
 
   qHandle(e){
