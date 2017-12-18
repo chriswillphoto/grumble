@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Questrial');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 
 /** {
   border: green 1px solid;
@@ -10,6 +11,8 @@ body {
   font-family: 'Questrial', sans-serif;
   text-align: center;
 }
+
+/*//////////////NAV//////////////*/
 
 nav {
   background-color: black;
@@ -59,9 +62,17 @@ a#navItem:hover {
   text-decoration: none;
 }
 
+/*/////////////HOME PAGE//////////////////*/
+
 .siteHeader {
   font-size: 300px;
   color: black;
+}
+
+label.locationLabel {
+  font-size: 32px;
+  margin-bottom: 20px;
+  display: block;
 }
 
 .searchBar {
@@ -75,16 +86,74 @@ a#navItem:hover {
 
 .goButton {
   width: 177px;
-  height: 63px;
+  height: 56px;
   background-color: navy;
   border: none;
   color: white;
-  font-size: 40px;
+  font-size: 30px;
   margin: 20px;
 }
 
-label.locationLabel {
-  font-size: 32px;
-  margin-bottom: 20px;
+/*///////////RESTAURANT VIEWER//////////*/
+
+.imageSlider {
+  width: 800px;
+  height: 450px;
+  display: inline-block;
+  border: black 4px solid;
+  margin: 20px;
+  margin-bottom: 0;
+}
+
+.headerBox {
+  display: inline-block;
+  position: absolute;
+  z-index: 1;
+  background-color: rgba(228,228,228,.9);
+  width: 815px;
+  height: 50px;
+  margin-top: 415px;
+}
+
+a.imageHeading {
+  position: absolute;
+  margin-bottom: 0;
+  margin-top: 425px;
+  z-index: 2;
+  width: 27vw;
+  font-family: 'Lato', sans-serif;
+  font-size: 25px;
+  font-weight: 300;
+  color: black;
+  text-decoration: none;
+}
+
+.tinderButtons {
   display: block;
+  width: 800px;
+  margin: auto;
+}
+
+#no {
+  display: inline-block;
+  width: 60px;
+  height: 50px;
+  margin-bottom: 40px;
+  margin: 0px 20px 40px 20px;
+}
+
+#fave {
+  display: inline-block;
+  width: 60px;
+  height: 50px;
+  margin-bottom: 40px;
+  margin: 0px 20px 40px 20px;
+}
+
+#yes {
+  display: inline-block;
+  width: 60px;
+  height: 50px;
+  margin-bottom: 40px;
+  margin: 0px 20px 40px 20px;
 }

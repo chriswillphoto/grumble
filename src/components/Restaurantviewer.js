@@ -16,12 +16,13 @@ class Restaurantviewer extends Component {
   render () {
     return (
       <div>
-        <h1>{this.props.matched.name}</h1>
-        <img src={this.props.matched.image} />
-        <div>
-          <button onClick = { (e) => {this.handleClick(e, "no")} }>No</button>
-          <button onClick = { (e) => {this.handleClick(e, "fave")} }>Fave</button>
-          <button onClick = { (e) => {this.handleClick(e, "yes")}  }>Yes</button>
+        <a className="imageHeading" href="#">{this.props.matched.name}</a>
+        <div className="headerBox"></div>
+        <img className="imageSlider" src={this.props.matched.image} />
+        <div className="tinderButtons">
+          <button id="no" onClick = { (e) => {this.handleClick(e, "no")} }>No</button>
+          <button id="fave" onClick = { (e) => {this.handleClick(e, "fave")} }>Fave</button>
+          <button id="yes" onClick = { (e) => {this.handleClick(e, "yes")}  }>Yes</button>
         </div>
       </div>
     );
