@@ -6,7 +6,11 @@ class Restaurantviewer extends Component {
     this.state = {
       matched: []
     };
+    this.handleClick = this.handleClick.bind(this);
+  }
 
+  handleClick(e, f){
+    this.props.button(f)
   }
 
   render () {
@@ -14,6 +18,9 @@ class Restaurantviewer extends Component {
       <div>
         <h1>{this.props.matched.name}</h1>
         <div>
+          <button onClick = { (e) => {this.handleClick(e, "no")} }>No</button>
+          <button onClick = { (e) => {this.handleClick(e, "fave")} }>Fave</button>
+          <button onClick = { (e) => {this.handleClick(e, "yes")}  }>Yes</button>
         </div>
       </div>
     );
