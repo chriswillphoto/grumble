@@ -154,6 +154,7 @@ class Home extends Component {
         {this.state.popUp && this.state.matched ? <RestPopUp rest={this.state.matched[0]}/> : ""}
 
       </div>
+
     );
   }
 }

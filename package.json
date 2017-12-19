@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "font-awesome": "^4.7.0",
+    "google-maps-react": "^1.1.2",
     "react": "^16.2.0",
     "react-confirm-dialog": "^1.0.5",
     "react-dom": "^16.2.0",
