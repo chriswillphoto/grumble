@@ -4,20 +4,26 @@ class Restaurantviewer extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      matched: []
+      matched: [],
+      moreInfo: false
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handlePopUpClick = this.handlePopUpClick.bind(this);
   }
 
   handleClick(e, f){
     this.props.button(f)
   }
 
+  handlePopUpClick(){
+    this.props.show()
+  }
+
   render () {
     return (
       <div>
         <img className="imageSlider" src={this.props.matched.image} />
-        <a className="imageHeading" href="#"><i className="fa fa-info fa-1x"></i> {this.props.matched.name}</a>
+        <button className="imageHeading" onClick = {this.handlePopUpClick}><i className="fa fa-info fa-1x"></i> {this.props.matched.name}</button>
         <div className="tinderButtons">
           <button id="no" onClick = { (e) => {this.handleClick(e, "no")} }><i className="fa fa-times fa-5x"></i></button>
           <button id="fave" onClick = { (e) => {this.handleClick(e, "fave")} }><i className="fa fa-heart fa-4x"></i></button>
