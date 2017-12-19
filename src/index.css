@@ -116,7 +116,8 @@ label.locationLabel {
     padding: 16px;
     display: block;
     margin: auto;
-    border: 9px solid black;
+    /*border: 9px solid black;*/
+    border: 4px solid black;
 }
 
 .searchBar:focus {
@@ -133,9 +134,14 @@ label.locationLabel {
   margin: 20px;
 }
 
-.goButton:active {
+.goButton:active, .goButton:focus {
   outline: none;
 }
+
+.goButton:hover {
+  cursor: pointer;
+}
+
 
 /*///////////RESTAURANT VIEWER//////////*/
 
@@ -143,7 +149,7 @@ label.locationLabel {
   width: 800px;
   height: 450px;
   display: inline-block;
-  border: black 8px solid;
+  border: #040a2f 10px solid;
   margin: 20px;
   margin-bottom: 2px;
 }
@@ -166,7 +172,11 @@ button.imageHeading {
   background-color: none;
 }
 
-button.imageHeading:active {
+.imageHeading:hover {
+  cursor: pointer;
+}
+
+.imageHeading:active, .imageHeading:focus {
   outline: none;
 }
 
@@ -180,7 +190,7 @@ button.imageHeading:active {
   cursor: pointer;
 }
 
-.tinderButtons button:active {
+.tinderButtons button:active, button:focus {
   outline: none;
 }
 
@@ -208,6 +218,7 @@ i.fa.fa-heart.fa-4x {
   color: navy;
   margin-top: 4px;
 }
+
 
 /*////////////////RESTAURANT POP UP//////////////////*/
 
