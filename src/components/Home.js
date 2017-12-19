@@ -1,11 +1,13 @@
 import React, { PureComponent as Component } from 'react';
 import Searchbar from './Searchbar';
+import Categories from './Categories';
 import Restaurantviewer from './Restaurantviewer';
-import Login from './Login'
+import Login from './Login';
 import RestPopUp from './RestPopUp';
 import { Link } from 'react-router-dom';
-import axios from 'axios'
-import Restaurant from './Restaurant'
+import axios from 'axios';
+import Restaurant from './Restaurant';
+
 
 
 class Home extends Component {
@@ -17,7 +19,7 @@ class Home extends Component {
       matched: null,
       popUp: false,
       loggedIn: false,
-
+      filterMenu: []
     }
 
     this.qHandle = this.qHandle.bind(this)
@@ -25,13 +27,14 @@ class Home extends Component {
 
     axios.get("http://localhost:5000/restaurants").then(res => {
       this.setState({rests: res.data})
+    axios.get("http://localhost:5000/categories").then(res => {
+      console.log(res.data);
+      this.setState({filterMenu: res.data.name})
+    })
     })
 
   };
 
-  // componentDidMount(){
-  //       console.log(this.state.rests)
-  // }
 
   qHandle(e){
     // console.log(e)
@@ -74,7 +77,6 @@ class Home extends Component {
       }
       this.setState({matched: newmatched})
 
-      // TODO post request add restaurant using id to maybes
     }
     if(e === "faves") {
       const newmatched = this.state.matched.slice()
@@ -85,7 +87,6 @@ class Home extends Component {
       }
       this.setState({matched: newmatched})
 
-      // TODO post request add restaurant using id to faves
     }
   }
 
@@ -99,14 +100,15 @@ class Home extends Component {
       <div>
         <Login loginform={(i) => this.loginHandler(i)}/>
         <h1 className="siteHeader">Grumble</h1>
-        <Searchbar query={(state) => { this.qHandle(state) }}/>
-
+        <Searchbar query={(state) => { this.qHandle(state) }}
         {this.state.matched ? <Restaurantviewer show={() => this.popUpHandle()} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
         {this.state.popUp && this.state.matched ? <RestPopUp rest={this.state.matched[0]}/> : ""}
-
+        <Categories {this.state.filterMenu} />
       </div>
     );
   }
 }
 
 export default Home;
+
+// {this.state.menu ? <Categories filterMenu /> : ""}

@@ -3,17 +3,6 @@ import React, { PureComponent as Component } from 'react';
 import axios from 'axios';
 
 class RestPopUp extends Component {
-  constructor() {
-    super();
-    // this.state = {
-    //   rest: null
-    // }
-
-    // this.setState({rest: this.props.rest})
-    // console.log(this.props.rest)
-  }
-
-
 
   render () {
     return (
