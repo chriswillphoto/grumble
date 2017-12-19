@@ -45,7 +45,9 @@ class Home extends Component {
   qHandle(e){
     // console.log(e)
     this.setState({suburb: e.suburb});
-    const filtered = this.state.rests.filter(rest => rest.suburb.indexOf(e.suburb) !== -1 )
+
+    const filtered = this.state.rests.filter(rest => rest.suburb.indexOf(e.suburb.toLowerCase()) !== -1 )
+
     if(filtered.length === 0){
       this.setState({matched: null})
     }else{

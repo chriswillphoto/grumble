@@ -18,7 +18,7 @@ class RestPopUp extends Component {
   render () {
     return (
       <div id="popUp">
-        <p>
+        <p className="popUpItem">
         {this.props.rest.name}
         <br />
         {this.props.rest.price}
