@@ -38,6 +38,7 @@ class Home extends Component {
     this.setState({suburb: e.suburb});
 
     const filtered = this.state.rests.filter(rest => rest.suburb.indexOf(e.suburb.toLowerCase()) !== -1 )
+
     if(filtered.length === 0){
       this.setState({matched: null})
     }else{
@@ -50,6 +51,7 @@ class Home extends Component {
     axios.post("http://localhost:5000/login", send).then(res => {
       sessionStorage.setItem("token", res.data.auth_token)
     })
+
 
   }
 
