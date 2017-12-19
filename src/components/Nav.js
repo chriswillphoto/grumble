@@ -22,7 +22,7 @@ class Nav extends Component {
             </div>
             :
             <div className="navbuttons">
-            <a id="navItem4">Login</a>
+            <a id="navItem4" onClick={ () => this.props.show_login() }>Login</a>
             </div>
           }
 

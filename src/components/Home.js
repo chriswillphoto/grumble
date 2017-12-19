@@ -21,7 +21,9 @@ class Home extends Component {
       loggedIn: sessionStorage.getItem('token'),
       current_user: null,
       user_faves: null,
-      user_maybes: null
+      user_maybes: null,
+      show_login: false,
+      login_error: null
 
     }
 
@@ -59,13 +61,26 @@ class Home extends Component {
   loginHandler(details){
     const send = {email: details.email, password: details.password}
     axios.post("http://localhost:5000/login", send).then(res => {
+      console.log(res)
       sessionStorage.setItem("token", res.data.auth_token)
+      this.setState({loggedIn: true, login_error: null})
+      window.location.reload()
+      
+    }).catch( (error) => {
+      this.setState({login_error: "Failed Login"})
     })
 
-    this.setState({loggedIn: true})
 
-    window.location.reload()
 
+
+  }
+
+  show_login(){
+    if(this.state.show_login){
+    this.setState({show_login: false})
+    }else{
+    this.setState({show_login: true})
+    }
   }
 
   yes(f){
@@ -130,8 +145,9 @@ class Home extends Component {
   render() {
     return(
       <div>
-        <Nav loggedIn={this.state.loggedIn} logout={() => this.logout()}/>
-        <Login loginform={(i) => this.loginHandler(i)}/>
+        <Nav show_login={ () => this.show_login() } loggedIn={this.state.loggedIn} logout={() => this.logout()}/>
+        {this.state.login_error ? <h1>{this.state.login_error}</h1> : ""}
+        {this.state.show_login ? <Login loginform={(i) => this.loginHandler(i)}/> : ""}
         <h1 className="siteHeader">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
 
