@@ -71,13 +71,8 @@ a#navItem:hover {
 
 footer {
   display: block;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
   padding: 1em;
 }
-
 
 p#instructions {
   display: inline-block;
@@ -148,7 +143,7 @@ label.locationLabel {
   width: 800px;
   height: 450px;
   display: inline-block;
-  border: black 4px solid;
+  border: black 8px solid;
   margin: 20px;
   margin-bottom: 2px;
 }
