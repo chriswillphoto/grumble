@@ -5,6 +5,8 @@
   border: green 1px solid;
 }*/
 
+
+
 body {
   margin: 0;
   padding: 0;
@@ -24,6 +26,11 @@ nav {
   display: block;
   height: 46px;
   width: 100vw;
+}
+
+.navbuttons {
+  display: inline-block;
+  color: white;
 }
 
 
@@ -54,17 +61,22 @@ a#navItem:hover {
   text-decoration: none;
 }
 
-a#navItem3 {
+#navItem3, #navItem4 {
   font-size: 22px;
   color: white;
   text-align: right;
   text-decoration: none;
   display: inline-block;
   width: 8vw;
+  cursor: pointer;
 }
 
 a#navItem:hover {
   text-decoration: none;
+}
+
+#navItem4 {
+
 }
 
 /*//////////////FOOTER//////////////*/

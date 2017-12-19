@@ -6,6 +6,7 @@ import RestPopUp from './RestPopUp';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Restaurant from './Restaurant'
+import Nav from './Nav'
 
 
 class Home extends Component {
@@ -16,22 +17,29 @@ class Home extends Component {
       rests: [],
       matched: null,
       popUp: false,
-      loggedIn: false,
+      loggedIn: sessionStorage.getItem('token'),
+      current_user: null,
+      user_faves: null,
+      user_maybes: null
 
     }
 
     this.qHandle = this.qHandle.bind(this)
     this.popUpHandle = this.popUpHandle.bind(this)
+    this.logout = this.logout.bind(this)
 
     axios.get("http://localhost:5000/restaurants").then(res => {
       this.setState({rests: res.data})
     })
 
-  };
+    if(this.state.loggedIn){
+      axios.get("http://localhost:5000/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
+        this.setState({current_user: res.data[0], user_faves: res.data[1], user_maybes: res.data[2] })
+      })
 
-  // componentDidMount(){
-  //       console.log(this.state.rests)
-  // }
+    }
+
+  };
 
   qHandle(e){
     // console.log(e)
@@ -50,11 +58,14 @@ class Home extends Component {
       sessionStorage.setItem("token", res.data.auth_token)
     })
 
+    this.setState({loggedIn: true})
+
+    window.location.reload()
 
   }
 
-  yes(e){
-    if(e === "no") {
+  yes(f){
+    if(f === "no") {
       const newmatched = this.state.matched.slice()
       newmatched.shift()
       if(newmatched.length === 0) {
@@ -63,7 +74,7 @@ class Home extends Component {
       }
       this.setState({matched: newmatched})
     }
-    if(e === "yes") {
+    if(f === "yes") {
       const newmatched = this.state.matched.slice()
       const a = newmatched.shift()
       if(newmatched.length === 0) {
@@ -72,9 +83,12 @@ class Home extends Component {
       }
       this.setState({matched: newmatched})
 
+      axios.put(`http://localhost:5000/restaurants/${a.id}/maybe`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
+        console.log(res)
+      })
       // TODO post request add restaurant using id to maybes
     }
-    if(e === "faves") {
+    if(f === "fave") {
       const newmatched = this.state.matched.slice()
       const a = newmatched.shift()
       if(newmatched.length === 0) {
@@ -82,6 +96,10 @@ class Home extends Component {
         return
       }
       this.setState({matched: newmatched})
+
+      axios.put(`http://localhost:5000/restaurants/${a.id}/fave`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
+        console.log(res)
+      })
 
       // TODO post request add restaurant using id to faves
     }
@@ -92,14 +110,22 @@ class Home extends Component {
     this.setState({popUp: newState})
   }
 
+  logout(){
+    sessionStorage.removeItem("token")
+    this.setState({loggedIn: false})
+    window.location.reload()
+
+  }
+
   render() {
     return(
       <div>
+        <Nav loggedIn={this.state.loggedIn} logout={() => this.logout()}/>
         <Login loginform={(i) => this.loginHandler(i)}/>
         <h1 className="siteHeader">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
 
-        {this.state.matched ? <Restaurantviewer show={() => this.popUpHandle()} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
+        {this.state.matched ? <Restaurantviewer loggedIn={ this.state.loggedIn } show={() => this.popUpHandle()} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
         {this.state.popUp && this.state.matched ? <RestPopUp rest={this.state.matched[0]}/> : ""}
 
       </div>
