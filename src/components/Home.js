@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Restaurant from './Restaurant'
 import Nav from './Nav'
+import Map from './Map';
 
 
 class Home extends Component {
@@ -136,7 +137,9 @@ class Home extends Component {
 
         {this.state.matched ? <Restaurantviewer loggedIn={ this.state.loggedIn } show={() => this.popUpHandle()} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
         {this.state.popUp && this.state.matched ? <RestPopUp rest={this.state.matched[0]}/> : ""}
-
+        <div className='resmap'>
+        <Map/>
+        </div>
       </div>
 
     );

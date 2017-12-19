@@ -47,12 +47,9 @@ export class Container extends React.Component {
   constructor(props) {
      super(props)
      this.state = {
-       suburb: "bondi",
-       houseList: [
-         "46 Thorn Street, Pennant Hills, NSW 2120",
-         "7 Boyd Avenue, West Pennant Hills, NSW 2120",
-         "47 Orana Avenue, Asquith, NSW 2077",
-         "1 Market Street Sydney, NSW 2000"
+       suburb: "bondi beach",
+       address: [
+
        ],
        center: { lat: -33.3, lng: 151 }
      }
