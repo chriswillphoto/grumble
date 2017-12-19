@@ -1,11 +1,8 @@
 import React, { PureComponent as Component } from 'react';
 import Searchbar from './Searchbar';
 import Restaurantviewer from './Restaurantviewer';
-<<<<<<< HEAD
 import Login from './Login'
-=======
 import RestPopUp from './RestPopUp';
->>>>>>> 28c51fc682c6d252374fcb561e23b0c29e45c44b
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Restaurant from './Restaurant'
@@ -37,7 +34,6 @@ class Home extends Component {
   qHandle(e){
     // console.log(e)
     this.setState({suburb: e.suburb});
-<<<<<<< HEAD
     const filtered = this.state.rests.filter(rest => rest.suburb.indexOf(e.suburb) !== -1 )
     if(filtered.length === 0){
       this.setState({matched: null})
@@ -53,10 +49,6 @@ class Home extends Component {
     })
 
 
-=======
-    const filtered = this.state.rests.filter(rest => rest.suburb === e.suburb.toLowerCase())
-    this.setState({matched: filtered})
->>>>>>> 28c51fc682c6d252374fcb561e23b0c29e45c44b
   }
 
   yes(e){
@@ -99,12 +91,7 @@ class Home extends Component {
         <Login loginform={(i) => this.loginHandler(i)}/>
         <h1 className="siteHeader">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
-<<<<<<< HEAD
         {this.state.matched ? <Restaurantviewer matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
-=======
-        {this.state.matched ? <Restaurantviewer matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : ""}
-        <RestPopUp />
->>>>>>> 28c51fc682c6d252374fcb561e23b0c29e45c44b
       </div>
     );
   }
