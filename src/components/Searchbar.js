@@ -17,7 +17,7 @@ class Searchbar extends Component {
 
   _handleChangeFor(e) {
 
-    this.setState( { suburb: e.target.value.toLowerCase() } );
+    this.setState( { suburb: e.target.value } );
   }
 
   _handleSubmit(e) {
