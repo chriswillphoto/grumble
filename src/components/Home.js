@@ -4,6 +4,7 @@ import Restaurantviewer from './Restaurantviewer';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Restaurant from './Restaurant'
+import Map from './Map';
 
 
 class Home extends Component {
@@ -71,7 +72,11 @@ class Home extends Component {
         <h1 className="siteHeader">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
         {this.state.matched ? <Restaurantviewer matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : ""}
+        <div>
+          <Map/>
+        </div>
       </div>
+
     );
   }
 }
