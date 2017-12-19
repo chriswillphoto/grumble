@@ -35,6 +35,7 @@ class Home extends Component {
     if(this.state.loggedIn){
       axios.get("http://localhost:5000/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
         this.setState({current_user: res.data[0], user_faves: res.data[1], user_maybes: res.data[2] })
+        console.log(this.state)
       })
 
     }
@@ -83,10 +84,13 @@ class Home extends Component {
       }
       this.setState({matched: newmatched})
 
-      axios.put(`http://localhost:5000/restaurants/${a.id}/maybe`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
-        console.log(res)
-      })
-      // TODO post request add restaurant using id to maybes
+      if(this.state.user_maybes.indexOf(a.id) === -1) {
+        axios.put(`http://localhost:5000/restaurants/${a.id}/maybe`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
+        })
+      }else{
+        alert("Restaurant has already been added to your maybes")
+      }
+
     }
     if(f === "fave") {
       const newmatched = this.state.matched.slice()
@@ -97,11 +101,14 @@ class Home extends Component {
       }
       this.setState({matched: newmatched})
 
-      axios.put(`http://localhost:5000/restaurants/${a.id}/fave`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
-        console.log(res)
-      })
+      // console.log(this.state.user_faves.indexOf(a) === -1)
+      if(this.state.user_faves.indexOf(a.id) === -1) {
+        axios.put(`http://localhost:5000/restaurants/${a.id}/fave`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
+        })
+      }else{
+        alert("Restaurant has already been added to your favourites")
+      }
 
-      // TODO post request add restaurant using id to faves
     }
   }
 
