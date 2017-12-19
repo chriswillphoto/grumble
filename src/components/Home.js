@@ -12,12 +12,13 @@ class Home extends Component {
     super();
     this.state = {
       suburb: "",
-      rests: [
-      ],
-      matched: null
+      rests: [],
+      matched: null,
+      popUp: false
     }
 
     this.qHandle = this.qHandle.bind(this)
+    this.popUpHandle = this.popUpHandle.bind(this)
     axios.get("http://localhost:5000/restaurants").then(res => {
       this.setState({rests: res.data})
     })
@@ -65,13 +66,18 @@ class Home extends Component {
     }
   }
 
+  popUpHandle(){
+    const newState = !this.state.popUp
+    this.setState({popUp: newState})
+  }
+
   render() {
     return(
       <div>
         <h1 className="siteHeader">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
-        {this.state.matched ? <Restaurantviewer matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : ""}
-        <RestPopUp />
+        {this.state.matched ? <Restaurantviewer show={() => this.popUpHandle()} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : ""}
+        {this.state.popUp && this.state.matched ? <RestPopUp rest={this.state.matched[0]}/> : ""}
       </div>
     );
   }
