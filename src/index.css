@@ -267,10 +267,12 @@ i.fa.fa-heart.fa-4x {
 
 .filterMenu {
   font-family: 'Lato', sans-serif;
-  font-size: 12px;
+  font-size: 16px;
   display: inline-block;
   padding-right: 4px;
   font-weight: 700;
+  background-color: navy;
+  color: white;
 }
 
 .filterMenuItem {
@@ -278,7 +280,13 @@ i.fa.fa-heart.fa-4x {
   font-size: 18px;
   display: inline-block;
   margin: 10px;
-  width: 300px;
+  width: 350px;
   height: 50px;
-  border-radius: 0;
+  background-color: white;
+  border: black 1px solid;
+  margin-top: 25px;
+}
+
+.filterMenuItem:active , .filterMenuItem:focus {
+  outline: none;
 }

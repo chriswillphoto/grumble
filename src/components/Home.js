@@ -26,7 +26,8 @@ class Home extends Component {
       show_login: false,
       login_error: null,
       filterMenu: [],
-      foodType: ""
+      foodType: "",
+      categories: []
     }
 
     this.qHandle = this.qHandle.bind(this)
@@ -34,6 +35,7 @@ class Home extends Component {
     this.logout = this.logout.bind(this)
 
     axios.get("http://localhost:5000/restaurants").then(res => {
+      // console.log(res.data[0].categories[0].name);
       this.setState({rests: res.data})
     })
 
@@ -47,7 +49,6 @@ class Home extends Component {
         this.setState({current_user: res.data[0], user_faves: res.data[1], user_maybes: res.data[2] })
         console.log(this.state)
       })
-
 
     }
 
@@ -78,9 +79,6 @@ class Home extends Component {
     }).catch( (error) => {
       this.setState({login_error: "Failed Login"})
     })
-
-
-
 
   }
 
@@ -150,7 +148,13 @@ class Home extends Component {
 
   foodTypeHandle(e){
     this.setState({foodType: e})
+    // const filteredSearch = this.state.rests.filter(rest => rest.suburb.indexOf(e.foodType) !== -1 )
 
+    // if(filtered.length === 0){
+    //   this.setState({matched: null})
+    // }else{
+    //   this.setState({matched: filtered})
+    // }
   }
 
   logout(){
