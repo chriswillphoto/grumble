@@ -34,7 +34,6 @@ class Home extends Component {
 
     this.qHandle = this.qHandle.bind(this)
     this.popUpHandle = this.popUpHandle.bind(this)
-    this.logout = this.logout.bind(this)
 
 
 
@@ -176,11 +175,7 @@ class Home extends Component {
     // }
   }
 
-  logout(){
-    sessionStorage.removeItem("token")
-    this.setState({loggedIn: false})
-    window.location.reload()
-  }
+
 
 
 
@@ -188,7 +183,7 @@ class Home extends Component {
     return(
       <div>
         <div id="map"></div>
-        <Nav show_login={ () => this.show_login() } loggedIn={this.state.loggedIn} logout={() => this.logout()}/>
+        <Nav show_login={ () => this.show_login() } loggedIn={this.state.loggedIn} />
         {this.state.login_error ? <h1>{this.state.login_error}</h1> : ""}
         {this.state.show_login ? <Login loginform={(i) => this.loginHandler(i)}/> : ""}
         <h1 className="siteHeader left">Grumble</h1>

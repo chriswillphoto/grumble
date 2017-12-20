@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Map from './MapEmbed';
 import axios from 'axios'
 
+import Nav from './Nav'
+
 
 const SERVER_URL = 'http://localhost:5000/restaurants/';
 
@@ -16,7 +18,8 @@ class Restaurant extends Component {
     this.state = {
       res_info: {},
       resto_id: match.params.restaurantId,
-      address: null
+      address: null,
+      loggedIn: sessionStorage.getItem('token')
      };
 
     axios.get( SERVER_URL + this.state.resto_id ).then( results => {
@@ -30,6 +33,7 @@ class Restaurant extends Component {
 
     return(
       <div>
+      <Nav loggedIn={this.state.loggedIn}/>
       <div>
         <Map address={this.state.address}/>
       </div>

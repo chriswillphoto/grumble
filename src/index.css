@@ -45,7 +45,7 @@ a#navItem1 {
   text-decoration: none;
   display: inline-block;
   width: 80vw;
-  margin: 5px;
+  margin: 0 5px;
 }
 
 a#navItem:hover {

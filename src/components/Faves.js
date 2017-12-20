@@ -9,18 +9,20 @@ class Faves extends Component {
     super(props)
 
     this.state = {
-      maybes: [
-        {id: 1, name: "Banana"}, {id: 2, name: "Apple"}, {id: 5, name: "Pineapple"}, {id: 4, name: "Peach"}
-      ],
-      faves: [
-        {id: 3, name: "Pear"}
-      ],
+      current_user: null,
+      maybes: null,
+      faves: null,
       loggedIn: sessionStorage.getItem("token")
     }
 
 
-
+    if(this.state.loggedIn){
+      axios.get("http://localhost:5000/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
+        this.setState({current_user: res.data[0], faves: res.data[3], maybes: res.data[4] })
+        console.log(this.state)
+      } )
   }
+}
 
 
 
@@ -54,19 +56,19 @@ class Faves extends Component {
     return(
       <div>
         <Nav loggedIn={this.state.loggedIn}/>
-        <h1 className="profileHeading">Hello, Current User</h1>
+        <h1 className="profileHeading">Hello, { this.state.current_user ? this.state.current_user.name : "Current User" }</h1>
         <div className="maybes">
           <h3>Maybes</h3>
-          {this.state.maybes.map( (m) => {
+          {this.state.maybes ? this.state.maybes.map( (m) => {
             return <Resto key={m.id} id={m.id} name={m.name} favey={(e) => {this.faveHandle(e)} } trashy={(e) => {this.trashMaybe(e)}} iconClass={"maybe"} />
-          } )}
+          } ) : ""}
         </div>
 
         <div className="faves">
           <h3>Faves</h3>
-          {this.state.faves.map( (f) => {
+          {this.state.faves ? this.state.faves.map( (f) => {
             return <Resto key={f.id} id={f.id} name={f.name} trashy={(e) => {this.trashFave(e)}}/>
-          } )}
+          } ) : ""}
         </div>
 
       </div>
