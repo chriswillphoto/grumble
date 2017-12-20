@@ -1,12 +1,13 @@
 import React, { PureComponent as Component } from 'react';
 import Searchbar from './Searchbar';
+import Categories from './Categories';
 import Restaurantviewer from './Restaurantviewer';
-import Login from './Login'
+import Login from './Login';
 import RestPopUp from './RestPopUp';
 import { Link } from 'react-router-dom';
-import axios from 'axios'
-import Restaurant from './Restaurant'
-import Nav from './Nav'
+import axios from 'axios';
+import Restaurant from './Restaurant';
+import Nav from './Nav';
 
 
 class Home extends Component {
@@ -22,8 +23,9 @@ class Home extends Component {
       user_faves: null,
       user_maybes: null,
       show_login: false,
-      login_error: null
-
+      login_error: null,
+      filterMenu: [],
+      foodType: ""
     }
 
     this.qHandle = this.qHandle.bind(this)
@@ -35,15 +37,22 @@ class Home extends Component {
       console.log(this.state.rests)
     })
 
+    axios.get("http://localhost:5000/categories").then(res => {
+      this.setState({filterMenu: res.data})
+        console.log("menu", this.state.filterMenu);
+    })
+
     if(this.state.loggedIn){
       axios.get("http://localhost:5000/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
         this.setState({current_user: res.data[0], user_faves: res.data[1], user_maybes: res.data[2] })
         console.log(this.state)
       })
 
+
     }
 
   };
+
 
   qHandle(e){
     // console.log(e)
@@ -105,6 +114,7 @@ class Home extends Component {
         this.setState({matched: newmatched})
       }
 
+
       if(this.state.user_maybes.indexOf(a.id) === -1) {
         axios.put(`http://localhost:5000/restaurants/${a.id}/maybe`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
         })
@@ -112,9 +122,13 @@ class Home extends Component {
         alert("Restaurant has already been added to your maybes")
       }
 
+
     }
 
     if(f === "fave") {
+      if(!this.state.loggedIn){
+        console.log("yes")
+      }
       const newmatched = this.state.matched.slice()
       const a = newmatched.shift()
       if(newmatched.length === 0) {
@@ -132,6 +146,7 @@ class Home extends Component {
         alert("Restaurant has already been added to your favourites")
       }
 
+
     }
   }
 
@@ -140,12 +155,18 @@ class Home extends Component {
     this.setState({popUp: newState})
   }
 
+  foodTypeHandle(e){
+    this.setState({foodType: e})
+
+  }
+
   logout(){
     sessionStorage.removeItem("token")
     this.setState({loggedIn: false})
     window.location.reload()
-
   }
+
+
 
   render() {
     return(
@@ -155,9 +176,12 @@ class Home extends Component {
         {this.state.show_login ? <Login loginform={(i) => this.loginHandler(i)}/> : ""}
         <h1 className="siteHeader left">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
-
+        {this.state.filterMenu && this.state.matched ? <Categories menu={ this.state.filterMenu} foodType={(e) => this.foodTypeHandle(e)} /> : ""}
         {this.state.matched ? <Restaurantviewer loggedIn={ this.state.loggedIn } show={() => this.popUpHandle()} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
         {this.state.popUp && this.state.matched ? <RestPopUp rest={this.state.matched[0]}/> : ""}
+        <div className='resmap'>
+        {/* <Map/> */}
+        </div>
 
       </div>
 
@@ -166,3 +190,6 @@ class Home extends Component {
 }
 
 export default Home;
+
+
+// <Categories menu={ this.state.filterMenu } />
