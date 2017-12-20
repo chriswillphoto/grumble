@@ -5,9 +5,11 @@ import Restaurantviewer from './Restaurantviewer';
 import Login from './Login';
 import RestPopUp from './RestPopUp';
 import { Link } from 'react-router-dom';
+
 import axios from 'axios';
 import Restaurant from './Restaurant';
 import Nav from './Nav';
+
 
 
 class Home extends Component {
@@ -25,7 +27,9 @@ class Home extends Component {
       show_login: false,
       login_error: null,
       filterMenu: [],
-      foodType: ""
+      foodType: "",
+      categories: []
+
     }
 
     this.qHandle = this.qHandle.bind(this)
@@ -35,6 +39,7 @@ class Home extends Component {
 
 
     axios.get("http://localhost:5000/restaurants").then(res => {
+      // console.log(res.data[0].categories[0].name);
       this.setState({rests: res.data})
       console.log(this.state.rests)
     })
@@ -49,7 +54,6 @@ class Home extends Component {
         this.setState({current_user: res.data[0], user_faves: res.data[1], user_maybes: res.data[2] })
         console.log(this.state)
       })
-
 
     }
 
@@ -80,9 +84,6 @@ class Home extends Component {
     }).catch( (error) => {
       this.setState({login_error: "Failed Login"})
     })
-
-
-
 
   }
 
@@ -166,7 +167,13 @@ class Home extends Component {
 
   foodTypeHandle(e){
     this.setState({foodType: e})
+    // const filteredSearch = this.state.rests.filter(rest => rest.suburb.indexOf(e.foodType) !== -1 )
 
+    // if(filtered.length === 0){
+    //   this.setState({matched: null})
+    // }else{
+    //   this.setState({matched: filtered})
+    // }
   }
 
   logout(){
@@ -188,7 +195,8 @@ class Home extends Component {
         <Searchbar query={(state) => { this.qHandle(state) }}/>
         {this.state.filterMenu && this.state.matched ? <Categories menu={ this.state.filterMenu} foodType={(e) => this.foodTypeHandle(e)} /> : ""}
         {this.state.matched ? <Restaurantviewer loggedIn={ this.state.loggedIn } show={() => this.popUpHandle()} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
-        {this.state.popUp && this.state.matched ? <RestPopUp rest={this.state.matched[0]}/> : ""}
+
+
 
 
       </div>
@@ -201,3 +209,4 @@ export default Home;
 
 
 // <Categories menu={ this.state.filterMenu } />
+// {this.state.popUp && this.state.matched ? <RestPopUp rest={this.state.matched[0]}/> : ""}

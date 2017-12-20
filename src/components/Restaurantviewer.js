@@ -41,6 +41,7 @@ class Restaurantviewer extends Component {
           <button id="fave" onClick = { (e) => {this.handleClick(e, "fave")} }><i className="fa fa-heart fa-4x"></i></button>
           <button id="yes" onClick = { (e) => {this.handleClick(e, "yes")}  }><i className="fa fa-check fa-5x"></i></button>
 
+          
 
 
         </div>

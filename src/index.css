@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Questrial');
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 
-
+* {
+  border: 1px green solid;
+}
 
 
 body {
@@ -277,21 +279,31 @@ i.fa.fa-heart.fa-4x {
 
 #popUp {
   border: 1px black solid;
+  max-width: 800px;
+  max-height: 400px;
+  margin: auto;
+  display:inline-block;
+  z-index: 2;
+  font-size: 12px;
+  text-align: left;
+  padding: 30px;
 }
 
 
 /*///////////////CATEGORY FILTER MENU////////////////*/
 
-.filterContainer {
+.filterContainer   {
   margin-top: 20px;
 }
 
 .filterMenu {
   font-family: 'Lato', sans-serif;
-  font-size: 12px;
+  font-size: 16px;
   display: inline-block;
   padding-right: 4px;
   font-weight: 700;
+  background-color: navy;
+  color: white;
 }
 
 .filterMenuItem {
@@ -299,7 +311,13 @@ i.fa.fa-heart.fa-4x {
   font-size: 18px;
   display: inline-block;
   margin: 10px;
-  width: 300px;
+  width: 350px;
   height: 50px;
-  border-radius: 0;
+  background-color: white;
+  border: black 1px solid;
+  margin-top: 25px;
+}
+
+.filterMenuItem:active , .filterMenuItem:focus {
+  outline: none;
 }

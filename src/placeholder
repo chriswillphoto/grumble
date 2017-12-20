@@ -1,0 +1,18 @@
+{this.props.popUp ?
+  <div id="popUp">
+    <p className="popUpItem">
+    {this.props.matched.name}
+    <br />
+    {this.props.matched.price}
+    <br />
+    {this.props.matched.address}
+    <br />
+    {this.props.matched.phone_number}
+    <br />
+    {this.props.matched.description}
+    </p>
+  </div>
+  :
+  ""
+
+}
