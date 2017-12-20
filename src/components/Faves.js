@@ -32,24 +32,31 @@ class Faves extends Component {
     const objToMove = oldm.find(m => m.id === e)
     const index = oldm.indexOf( objToMove )
     oldf.push(objToMove)
-    oldm.splice(index, 1)
+    const a = oldm.splice(index, 1)
+
     this.setState({maybes: oldm, faves: oldf})
+    axios.put("http://localhost:5000/maybes", {restaurant_id: a[0].id}, {headers: {Authorization: this.state.loggedIn}}).then(res => { console.log(res) })
+    axios.put("http://localhost:5000/favourites", {restaurant_id: a[0].id}, {headers: {Authorization: this.state.loggedIn}}).then(res => { console.log(res) })
+
   }
 
   trashMaybe(e){
     const maybs = this.state.maybes.slice()
     const obj = maybs.find(m => m.id === e)
     const index = maybs.indexOf( obj )
-    maybs.splice(index, 1)
+    const a = maybs.splice(index, 1)
     this.setState({maybes: maybs})
+    axios.put("http://localhost:5000/maybes", {restaurant_id: a[0].id}, {headers: {Authorization: this.state.loggedIn}}).then(res => { console.log(res) })
   }
 
   trashFave(e){
     const faves = this.state.faves.slice()
     const obj = faves.find(f => f.id === e)
     const index = faves.indexOf( obj )
-    faves.splice(index, 1)
+    const a = faves.splice(index, 1)
+    console.log(a)
     this.setState({faves})
+    axios.put("http://localhost:5000/favourites", {restaurant_id: a[0].id}, {headers: {Authorization: this.state.loggedIn}}).then(res => { console.log(res) })
   }
 
   render(){
