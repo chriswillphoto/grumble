@@ -67,14 +67,14 @@ class Faves extends Component {
         <div className="maybes">
           <h3>Maybes</h3>
           {this.state.maybes ? this.state.maybes.map( (m) => {
-            return <Resto key={m.id} id={m.id} name={m.name} favey={(e) => {this.faveHandle(e)} } trashy={(e) => {this.trashMaybe(e)}} iconClass={"maybe"} />
+            return <Resto key={m.id} id={m.id} name={m.name} favey={(e) => {this.faveHandle(e)} } trashy={(e) => { if(window.confirm("Remove from your matches?")) {this.trashMaybe(e)} }} iconClass={"maybe"} />
           } ) : ""}
         </div>
 
         <div className="faves">
           <h3>Faves</h3>
           {this.state.faves ? this.state.faves.map( (f) => {
-            return <Resto key={f.id} id={f.id} name={f.name} trashy={(e) => {this.trashFave(e)}}/>
+            return <Resto key={f.id} id={f.id} name={f.name} trashy={(e) => { if(window.confirm("Remove from Favourites?")){this.trashFave(e)} }}/>
           } ) : ""}
         </div>
 
