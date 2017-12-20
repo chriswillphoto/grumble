@@ -31,7 +31,7 @@ class Resto extends Component {
           </div>
            :
           <div className="buttonwrap">
-          <button onClick={ () => { this.trashHandler(this.props.id) } }><i className="fa fa-trash-o fa-2x" /></button>
+            <button onClick={ () => { this.trashHandler(this.props.id) } }><i className="fa fa-trash-o fa-2x" /></button>
           </div>
          }
       </div>
