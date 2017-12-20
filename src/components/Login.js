@@ -20,6 +20,7 @@ class Login extends Component {
   render(){
     return(
     <div className="login-form">
+        <h4 id="login-title">Please Login for full Functionality</h4>
         <form onSubmit={(event) => {this.submitHandle(event)} }>
           <label>Email: </label>
           <input id="email" type="text" onChange={ (event) => {this.setState({email: event.target.value})} } value={this.state.email} ></input>

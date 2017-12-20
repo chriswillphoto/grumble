@@ -13,9 +13,16 @@ class Restaurantviewer extends Component {
   }
 
   handleClick(e, f){
+
+
     this.setState({animate: `${f}`})
-    this.props.button(f)
-    setTimeout( () => {this.setState({animate:false})}, 300 )
+    // this.props.button(f)
+    if(f === "fave"){
+      setTimeout( () => {this.setState({animate:false});this.props.button(f)}, 1300 )
+      console.log("yes")
+      return
+    }
+    setTimeout( () => {this.setState({animate:false});this.props.button(f)}, 300 )
   }
 
   handlePopUpClick(){
@@ -26,7 +33,7 @@ class Restaurantviewer extends Component {
     return (
       <div>
         <div className={this.state.animate && this.props.loggedIn ? "imageSlider " + this.state.animate : "imageSlider"} style={ {backgroundImage: `url(${this.props.matched.image})`} } >
-          <div ></div>
+          <div className={this.state.animate === "fave" && this.props.loggedIn ? "whatever heart" : "whatever" } ></div>
         </div>
         <button className="imageHeading" onClick = {this.handlePopUpClick}><i className="fa fa-info fa-1x"></i> {this.props.matched.name}</button>
         <div className="tinderButtons">

@@ -97,6 +97,11 @@ a#navItem:hover {
   height: 30px;
 }
 
+#login-title {
+  margin-bottom: 10px;
+  text-decoration: underline;
+}
+
 
 /*//////////////FOOTER//////////////*/
 
@@ -253,6 +258,18 @@ i.fa.fa-times.fa-5x {
 i.fa.fa-heart.fa-4x {
   color: navy;
   margin-top: 4px;
+}
+
+.whatever {
+  width: 200px;
+  height: 200px;
+  background-size: contain;
+  margin: 100px auto;
+  background-image: url("http://clipart-library.com/img/1707272.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0;
+
 }
 
 
