@@ -5,10 +5,10 @@ import Restaurantviewer from './Restaurantviewer';
 import Login from './Login';
 import RestPopUp from './RestPopUp';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import Restaurant from './Restaurant';
+import axios from 'axios'
+import Restaurant from './Restaurant'
 import Nav from './Nav';
-import Map from './Map';
+import Map from './test'
 
 
 class Home extends Component {
@@ -33,6 +33,8 @@ class Home extends Component {
     this.qHandle = this.qHandle.bind(this)
     this.popUpHandle = this.popUpHandle.bind(this)
     this.logout = this.logout.bind(this)
+
+
 
     axios.get("http://localhost:5000/restaurants").then(res => {
       // console.log(res.data[0].categories[0].name);
@@ -168,14 +170,15 @@ class Home extends Component {
   render() {
     return(
       <div>
+        <div id="map"></div>
         <Nav show_login={ () => this.show_login() } loggedIn={this.state.loggedIn} logout={() => this.logout()}/>
         {this.state.login_error ? <h1>{this.state.login_error}</h1> : ""}
         {this.state.show_login ? <Login loginform={(i) => this.loginHandler(i)}/> : ""}
         <h1 className="siteHeader">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
         {this.state.filterMenu && this.state.matched ? <Categories menu={ this.state.filterMenu} foodType={(e) => this.foodTypeHandle(e)} /> : ""}
-        {this.state.matched ? <Restaurantviewer loggedIn={ this.state.loggedIn } show={() => this.popUpHandle()} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
-        {this.state.popUp && this.state.matched ? <RestPopUp rest={this.state.matched[0]}/> : ""}
+        {this.state.matched ? <Restaurantviewer popUp={this.state.popUp} loggedIn={ this.state.loggedIn } show={() => this.popUpHandle()} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
+
         <div className='resmap'>
         <Map/>
         </div>
@@ -190,3 +193,4 @@ export default Home;
 
 
 // <Categories menu={ this.state.filterMenu } />
+// {this.state.popUp && this.state.matched ? <RestPopUp rest={this.state.matched[0]}/> : ""}
