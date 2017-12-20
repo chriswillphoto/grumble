@@ -5,10 +5,11 @@ import Restaurantviewer from './Restaurantviewer';
 import Login from './Login';
 import RestPopUp from './RestPopUp';
 import { Link } from 'react-router-dom';
-import axios from 'axios'
-import Restaurant from './Restaurant'
+
+import axios from 'axios';
+import Restaurant from './Restaurant';
 import Nav from './Nav';
-import Map from './test'
+
 
 
 class Home extends Component {
@@ -28,6 +29,7 @@ class Home extends Component {
       filterMenu: [],
       foodType: "",
       categories: []
+
     }
 
     this.qHandle = this.qHandle.bind(this)
@@ -39,6 +41,7 @@ class Home extends Component {
     axios.get("http://localhost:5000/restaurants").then(res => {
       // console.log(res.data[0].categories[0].name);
       this.setState({rests: res.data})
+      console.log(this.state.rests)
     })
 
     axios.get("http://localhost:5000/categories").then(res => {
@@ -93,6 +96,8 @@ class Home extends Component {
   }
 
   yes(f){
+
+
     if(f === "no") {
       const newmatched = this.state.matched.slice()
       newmatched.shift()
@@ -102,14 +107,15 @@ class Home extends Component {
       }
       this.setState({matched: newmatched})
     }
+
     if(f === "yes") {
       const newmatched = this.state.matched.slice()
       const a = newmatched.shift()
       if(newmatched.length === 0) {
         this.setState({matched: null})
-        return
+      }else{
+        this.setState({matched: newmatched})
       }
-      this.setState({matched: newmatched})
 
 
       if(this.state.user_maybes.indexOf(a.id) === -1) {
@@ -121,17 +127,21 @@ class Home extends Component {
 
 
     }
+
     if(f === "fave") {
+      if(!this.state.loggedIn){
+        console.log("yes")
+      }
       const newmatched = this.state.matched.slice()
       const a = newmatched.shift()
       if(newmatched.length === 0) {
         this.setState({matched: null})
-        return
+
+      }else{
+        this.setState({matched: newmatched})
       }
-      this.setState({matched: newmatched})
 
 
-      // console.log(this.state.user_faves.indexOf(a) === -1)
       if(this.state.user_faves.indexOf(a.id) === -1) {
         axios.put(`http://localhost:5000/restaurants/${a.id}/fave`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
         })
@@ -174,14 +184,13 @@ class Home extends Component {
         <Nav show_login={ () => this.show_login() } loggedIn={this.state.loggedIn} logout={() => this.logout()}/>
         {this.state.login_error ? <h1>{this.state.login_error}</h1> : ""}
         {this.state.show_login ? <Login loginform={(i) => this.loginHandler(i)}/> : ""}
-        <h1 className="siteHeader">Grumble</h1>
+        <h1 className="siteHeader left">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
         {this.state.filterMenu && this.state.matched ? <Categories menu={ this.state.filterMenu} foodType={(e) => this.foodTypeHandle(e)} /> : ""}
-        {this.state.matched ? <Restaurantviewer popUp={this.state.popUp} loggedIn={ this.state.loggedIn } show={() => this.popUpHandle()} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
+        {this.state.matched ? <Restaurantviewer loggedIn={ this.state.loggedIn } show={() => this.popUpHandle()} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
 
-        <div className='resmap'>
-        <Map/>
-        </div>
+
+
 
       </div>
 

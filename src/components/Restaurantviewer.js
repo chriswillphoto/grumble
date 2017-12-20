@@ -5,14 +5,17 @@ class Restaurantviewer extends Component {
     super(props);
     this.state = {
       matched: [],
-      moreInfo: false
+      moreInfo: false,
+      animate: false
     };
     this.handleClick = this.handleClick.bind(this);
     this.handlePopUpClick = this.handlePopUpClick.bind(this);
   }
 
   handleClick(e, f){
+    this.setState({animate: `${f}`})
     this.props.button(f)
+    setTimeout( () => {this.setState({animate:false})}, 300 )
   }
 
   handlePopUpClick(){
@@ -22,7 +25,9 @@ class Restaurantviewer extends Component {
   render () {
     return (
       <div>
-        <img className="imageSlider" src={this.props.matched.image} />
+        <div className={this.state.animate && this.props.loggedIn ? "imageSlider " + this.state.animate : "imageSlider"} style={ {backgroundImage: `url(${this.props.matched.image})`} } >
+          <div ></div>
+        </div>
         <button className="imageHeading" onClick = {this.handlePopUpClick}><i className="fa fa-info fa-1x"></i> {this.props.matched.name}</button>
         <div className="tinderButtons">
           <button id="no" onClick = { (e) => {this.handleClick(e, "no")} }><i className="fa fa-times fa-5x"></i></button>
