@@ -3,13 +3,7 @@ import React, { PureComponent as Component } from 'react'
 class Nav extends Component {
   constructor(props){
     super(props)
-
   }
-
-  componentDidMount(){
-    console.log(this.props.loggedIn)
-  }
-
 
   render(){
     return(

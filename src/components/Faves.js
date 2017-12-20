@@ -2,6 +2,7 @@ import React, { PureComponent as Component } from 'react'
 import axios from 'axios'
 
 import Resto from './Resto'
+import Nav from './Nav'
 
 class Faves extends Component {
   constructor(props){
@@ -13,8 +14,11 @@ class Faves extends Component {
       ],
       faves: [
         {id: 3, name: "Pear"}
-      ]
+      ],
+      loggedIn: sessionStorage.getItem("token")
     }
+
+
 
   }
 
@@ -49,6 +53,7 @@ class Faves extends Component {
   render(){
     return(
       <div>
+        <Nav loggedIn={this.state.loggedIn}/>
         <h1 className="profileHeading">Hello, Current User</h1>
         <div className="maybes">
           <h3>Maybes</h3>
