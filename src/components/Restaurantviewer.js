@@ -1,4 +1,6 @@
 import React, { PureComponent as Component } from 'react';
+import LikeButton from './LikeButtons'
+import DislikeButton from './DislikeButtons'
 
 class Restaurantviewer extends Component {
   constructor (props) {
@@ -40,10 +42,8 @@ class Restaurantviewer extends Component {
           <button id="no" onClick = { (e) => {this.handleClick(e, "no")} }><i className="fa fa-times fa-5x"></i></button>
           <button id="fave" onClick = { (e) => {this.handleClick(e, "fave")} }><i className="fa fa-heart fa-4x"></i></button>
           <button id="yes" onClick = { (e) => {this.handleClick(e, "yes")}  }><i className="fa fa-check fa-5x"></i></button>
-
-          
-
-
+          <LikeButton/>
+          <DislikeButton />
         </div>
       </div>
     );

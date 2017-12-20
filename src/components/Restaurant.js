@@ -2,11 +2,9 @@ import React, { PureComponent as Component } from 'react';
 import { Link } from 'react-router-dom';
 import Map from './MapEmbed';
 import axios from 'axios'
-
+// import LikeButton from './LikeButtons'
 
 const SERVER_URL = 'http://localhost:5000/restaurants/';
-
-
 
 class Restaurant extends Component {
   constructor(props) {
@@ -23,6 +21,7 @@ class Restaurant extends Component {
       this.setState({res_info: results.data})
       this.setState({address: this.state.res_info.address})
       this.setState( {address: this.state.address.split(/[\s,]+/).join("%20") } )
+      console.log(this.state)
     });
   }
 
@@ -43,6 +42,7 @@ class Restaurant extends Component {
         <h3>Description</h3>
         <p>{this.state.res_info.description}</p>
         <img src= {this.state.res_info.image} alt={this.state.res_info.name}/>
+
 
       </div>
     );
