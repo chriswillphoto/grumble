@@ -32,6 +32,7 @@ class Home extends Component {
 
     axios.get("http://localhost:5000/restaurants").then(res => {
       this.setState({rests: res.data})
+      console.log(this.state.rests)
     })
 
     if(this.state.loggedIn){
@@ -64,7 +65,7 @@ class Home extends Component {
       sessionStorage.setItem("token", res.data.auth_token)
       this.setState({loggedIn: true, login_error: null})
       window.location.reload()
-      
+
     }).catch( (error) => {
       this.setState({login_error: "Failed Login"})
     })
@@ -83,6 +84,8 @@ class Home extends Component {
   }
 
   yes(f){
+
+
     if(f === "no") {
       const newmatched = this.state.matched.slice()
       newmatched.shift()
@@ -92,14 +95,15 @@ class Home extends Component {
       }
       this.setState({matched: newmatched})
     }
+
     if(f === "yes") {
       const newmatched = this.state.matched.slice()
       const a = newmatched.shift()
       if(newmatched.length === 0) {
         this.setState({matched: null})
-        return
+      }else{
+        this.setState({matched: newmatched})
       }
-      this.setState({matched: newmatched})
 
       if(this.state.user_maybes.indexOf(a.id) === -1) {
         axios.put(`http://localhost:5000/restaurants/${a.id}/maybe`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
@@ -109,16 +113,18 @@ class Home extends Component {
       }
 
     }
+
     if(f === "fave") {
       const newmatched = this.state.matched.slice()
       const a = newmatched.shift()
       if(newmatched.length === 0) {
         this.setState({matched: null})
-        return
-      }
-      this.setState({matched: newmatched})
 
-      // console.log(this.state.user_faves.indexOf(a) === -1)
+      }else{
+        this.setState({matched: newmatched})
+      }
+
+
       if(this.state.user_faves.indexOf(a.id) === -1) {
         axios.put(`http://localhost:5000/restaurants/${a.id}/fave`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
         })
@@ -147,7 +153,7 @@ class Home extends Component {
         <Nav show_login={ () => this.show_login() } loggedIn={this.state.loggedIn} logout={() => this.logout()}/>
         {this.state.login_error ? <h1>{this.state.login_error}</h1> : ""}
         {this.state.show_login ? <Login loginform={(i) => this.loginHandler(i)}/> : ""}
-        <h1 className="siteHeader">Grumble</h1>
+        <h1 className="siteHeader left">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
 
         {this.state.matched ? <Restaurantviewer loggedIn={ this.state.loggedIn } show={() => this.popUpHandle()} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}

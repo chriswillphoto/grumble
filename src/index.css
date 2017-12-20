@@ -184,6 +184,10 @@ label.locationLabel {
   border: #040a2f 10px solid;
   margin: 20px;
   margin-bottom: 2px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-color: black;
 }
 
 i.fa.fa-info.fa-1x {
