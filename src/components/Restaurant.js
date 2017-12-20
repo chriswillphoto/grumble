@@ -1,9 +1,12 @@
 import React, { PureComponent as Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import Map from './Map';
 import axios from 'axios';
 
+
 const SERVER_URL = 'http://localhost:5000/restaurants/';
+
+
 
 class Restaurant extends Component {
   constructor(props) {
@@ -24,6 +27,9 @@ class Restaurant extends Component {
   render() {
     return(
       <div>
+      <div>
+        <Map/>
+      </div>
         <h1>{this.state.res_info.name}</h1>
         <h3>Address</h3>
         <p>{this.state.res_info.address}</p>
@@ -34,6 +40,7 @@ class Restaurant extends Component {
         <h3>Description</h3>
         <p>{this.state.res_info.description}</p>
         <img src= {this.state.res_info.image} />
+
       </div>
     );
   }

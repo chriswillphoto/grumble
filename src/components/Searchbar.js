@@ -24,7 +24,6 @@ class Searchbar extends Component {
     e.preventDefault();
 
       this.props.query(this.state)
-      this.props.menu()
 
   }
 

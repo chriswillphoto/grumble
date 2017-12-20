@@ -1,20 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Questrial');
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 
-/** {
-  border: green 1px solid;
-}*/
+
+
 
 body {
   margin: 0;
   padding: 0;
   font-family: 'Questrial', sans-serif;
   text-align: center;
-  /*height: 100%*/
+  height: 100%;
 }
 
 #root {
-  min-height: calc(100vh - 106px);
+  min-height: calc(100vh - 50px);
 }
 
 /*//////////////NAV//////////////*/
@@ -24,6 +23,11 @@ nav {
   display: block;
   height: 46px;
   width: 100vw;
+}
+
+.navbuttons {
+  display: inline-block;
+  color: white;
 }
 
 
@@ -54,24 +58,52 @@ a#navItem:hover {
   text-decoration: none;
 }
 
-a#navItem3 {
+#navItem3, #navItem4 {
   font-size: 22px;
   color: white;
   text-align: right;
   text-decoration: none;
   display: inline-block;
   width: 8vw;
+  cursor: pointer;
 }
 
 a#navItem:hover {
   text-decoration: none;
 }
 
+#navItem4 {
+
+}
+/*//////////////LOGIN BOX//////////////*/
+
+.login-form {
+  border: 1px solid black;
+  width: 500px;
+  padding: 40px;
+  margin: 0 auto;
+  box-shadow: 0 0 10px black;
+  position: absolute;
+  right: 0;
+  background-color: white;
+}
+
+#email { margin-right: 20px;}
+
+#login-button {
+  display: block;
+  margin: 5px auto;
+  width: 100px;
+  height: 30px;
+}
+
+
 /*//////////////FOOTER//////////////*/
 
 footer {
   display: block;
   padding: 1em;
+  height: 56px;
 }
 
 p#instructions {
@@ -224,4 +256,29 @@ i.fa.fa-heart.fa-4x {
 
 #popUp {
   border: 1px black solid;
+}
+
+
+/*///////////////CATEGORY FILTER MENU////////////////*/
+
+.filterContainer {
+  margin-top: 20px;
+}
+
+.filterMenu {
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  display: inline-block;
+  padding-right: 4px;
+  font-weight: 700;
+}
+
+.filterMenuItem {
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  display: inline-block;
+  margin: 10px;
+  width: 300px;
+  height: 50px;
+  border-radius: 0;
 }
