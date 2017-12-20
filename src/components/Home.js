@@ -32,6 +32,8 @@ class Home extends Component {
     this.popUpHandle = this.popUpHandle.bind(this)
     this.logout = this.logout.bind(this)
 
+
+
     axios.get("http://localhost:5000/restaurants").then(res => {
       this.setState({rests: res.data})
       console.log(this.state.rests)
@@ -171,6 +173,7 @@ class Home extends Component {
   render() {
     return(
       <div>
+        <div id="map"></div>
         <Nav show_login={ () => this.show_login() } loggedIn={this.state.loggedIn} logout={() => this.logout()}/>
         {this.state.login_error ? <h1>{this.state.login_error}</h1> : ""}
         {this.state.show_login ? <Login loginform={(i) => this.loginHandler(i)}/> : ""}
@@ -179,9 +182,7 @@ class Home extends Component {
         {this.state.filterMenu && this.state.matched ? <Categories menu={ this.state.filterMenu} foodType={(e) => this.foodTypeHandle(e)} /> : ""}
         {this.state.matched ? <Restaurantviewer loggedIn={ this.state.loggedIn } show={() => this.popUpHandle()} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
         {this.state.popUp && this.state.matched ? <RestPopUp rest={this.state.matched[0]}/> : ""}
-        <div className='resmap'>
-        {/* <Map/> */}
-        </div>
+
 
       </div>
 

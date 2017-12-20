@@ -1,6 +1,7 @@
 import React, { PureComponent as Component } from 'react';
 import { Link } from 'react-router-dom';
 import Map from './MapEmbed';
+import axios from 'axios'
 
 
 const SERVER_URL = 'http://localhost:5000/restaurants/';
