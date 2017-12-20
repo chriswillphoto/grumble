@@ -109,6 +109,11 @@ class Home extends Component {
     }
 
     if(f === "yes") {
+      if(!this.state.loggedIn){
+        this.setState({show_login: true})
+        window.scrollTo(0,0)
+        return
+      }
       const newmatched = this.state.matched.slice()
       const a = newmatched.shift()
       if(newmatched.length === 0) {
@@ -130,7 +135,9 @@ class Home extends Component {
 
     if(f === "fave") {
       if(!this.state.loggedIn){
-        console.log("yes")
+        this.setState({show_login: true})
+        window.scrollTo(0,0)
+        return
       }
       const newmatched = this.state.matched.slice()
       const a = newmatched.shift()
@@ -199,7 +206,3 @@ class Home extends Component {
 }
 
 export default Home;
-
-
-// <Categories menu={ this.state.filterMenu } />
-// {this.state.popUp && this.state.matched ? <RestPopUp rest={this.state.matched[0]}/> : ""}

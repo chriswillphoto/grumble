@@ -3,8 +3,24 @@
 .no {
   animation: left 0.3s ease-in-out 0s 1;
 }
+
+.heart {
+  animation: fader 1.2s linear 0s 1;
+}
+
 .yes {
   animation: right 0.3s ease-in-out 0s 1;
+}
+
+.fave {
+  animation: fadeout 0.8s ease-in-out 0.4s 1;
+}
+
+
+@keyframes fader {
+  0% {opacity: 0;}
+  30% {opacity: 1;}
+  100% {opacity: 1;}
 }
 
 @keyframes left {
@@ -15,4 +31,9 @@
 @keyframes right {
   0% {transform: translateX(0);}
   100% {transform: translateX(3000px);}
+}
+
+@keyframes fadeout {
+  0% {opacity: 1}
+  100% {opacity: 0}
 }
