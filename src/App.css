@@ -21,7 +21,7 @@ i {
 }
 
 .maybes, .faves {
-  min-width: 240px;
+  min-width: 500px;
   min-height: 200px;
   border: 1px solid black;
   display: inline-block;
@@ -41,15 +41,15 @@ i {
   background-color: transparent;
 }
 
-.restobar button, .restobar p{
+.restobar button, .restobar a{
   display: inline-block;
   margin: 0 5px;
   border: none;
   color: white;
 }
 
-.restobar p {
-  min-width: 85px;
+.restobar a {
+  min-width: 280px;
 }
 
 .restobar button i {

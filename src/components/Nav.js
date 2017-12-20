@@ -4,12 +4,13 @@ class Nav extends Component {
   constructor(props){
     super(props)
 
+    this.logout = this.logout.bind(this)
   }
 
-  componentDidMount(){
-    console.log(this.props.loggedIn)
+  logout(){
+    sessionStorage.removeItem("token")
+    window.location.href = "http://localhost:3000/"
   }
-
 
   render(){
     return(
@@ -18,7 +19,7 @@ class Nav extends Component {
           {this.props.loggedIn ?
             <div className="navbuttons">
             <a id="navItem2" href="/#/faves">See my list</a>
-            <a id="navItem3" onClick={() => this.props.logout()}>Logout</a>
+            <a id="navItem3" onClick={() => this.logout()}>Logout</a>
             </div>
             :
             <div className="navbuttons">

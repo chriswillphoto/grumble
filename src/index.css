@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Questrial');
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 
+
 * {
   box-sizing: border-box;
 }
 
+div {
+  vertical-align: top;
+}
 
 body {
   margin: 0;
@@ -25,6 +29,7 @@ nav {
   display: block;
   height: 46px;
   width: 100vw;
+  line-height: 46px;
 }
 
 .navbuttons {
@@ -40,7 +45,7 @@ a#navItem1 {
   text-decoration: none;
   display: inline-block;
   width: 80vw;
-  margin: 5px;
+  margin: 0 5px;
 }
 
 a#navItem:hover {
@@ -155,7 +160,6 @@ label.locationLabel {
     padding: 16px;
     display: block;
     margin: auto;
-    /*border: 9px solid black;*/
     border: 4px solid black;
 }
 
@@ -195,9 +199,24 @@ label.locationLabel {
   background-size: cover;
   background-position: center center;
   background-color: black;
+  position: relative;
+  text-align: left;
 }
 
-i.fa.fa-info.fa-1x {
+.suburbTag {
+  font-size: 12px;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  background-color: #ea0404;
+  display: inline;
+  padding-right: 30px;
+  padding-left: 3px;
+  position: absolute;
+  top: 30px;
+  font-weight: 700;
+}
+
+i.fa.fa-expand.fa-1x {
   color: navy;
 }
 
@@ -207,9 +226,9 @@ button.imageHeading {
   z-index: 2;
   width: 68vw;
   font-family: 'Lato', sans-serif;
-  font-size: 20px;
-  font-weight: 300;
-  color: black;
+  font-size: 17px;
+  font-weight: 400;
+  color: navy;
   text-decoration: none;
   border: none;
   background-color: none;
@@ -271,22 +290,31 @@ i.fa.fa-heart.fa-4x {
   background-position: center center;
   background-repeat: no-repeat;
   opacity: 0;
-
 }
 
+.fa.fa-usd {
+  font-size: 24px;
+  color: #040a2f;
+}
 
 /*////////////////RESTAURANT POP UP//////////////////*/
 
 #popUp {
-  border: 1px black solid;
-  max-width: 800px;
-  max-height: 400px;
-  margin: auto;
-  display:inline-block;
+  width: 780px;
   z-index: 2;
-  font-size: 12px;
+  font-size: 16px;
   text-align: left;
   padding: 30px;
+  width: 100%;
+  height: 220px;
+  background-color: white;
+  color: #040a2f;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  vertical-align: top;
+  position: absolute;
+  bottom: 0;
+  line-height: 1.5;
 }
 
 
@@ -302,8 +330,6 @@ i.fa.fa-heart.fa-4x {
   display: inline-block;
   padding-right: 4px;
   font-weight: 700;
-  background-color: navy;
-  color: white;
 }
 
 .filterMenuItem {

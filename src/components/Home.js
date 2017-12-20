@@ -34,7 +34,6 @@ class Home extends Component {
 
     this.qHandle = this.qHandle.bind(this)
     this.popUpHandle = this.popUpHandle.bind(this)
-    this.logout = this.logout.bind(this)
 
 
 
@@ -176,11 +175,7 @@ class Home extends Component {
     // }
   }
 
-  logout(){
-    sessionStorage.removeItem("token")
-    this.setState({loggedIn: false})
-    window.location.reload()
-  }
+
 
 
 
@@ -188,13 +183,13 @@ class Home extends Component {
     return(
       <div>
         <div id="map"></div>
-        <Nav show_login={ () => this.show_login() } loggedIn={this.state.loggedIn} logout={() => this.logout()}/>
+        <Nav show_login={ () => this.show_login() } loggedIn={this.state.loggedIn} />
         {this.state.login_error ? <h1>{this.state.login_error}</h1> : ""}
         {this.state.show_login ? <Login loginform={(i) => this.loginHandler(i)}/> : ""}
         <h1 className="siteHeader left">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
         {this.state.filterMenu && this.state.matched ? <Categories menu={ this.state.filterMenu} foodType={(e) => this.foodTypeHandle(e)} /> : ""}
-        {this.state.matched ? <Restaurantviewer loggedIn={ this.state.loggedIn } show={() => this.popUpHandle()} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
+        {this.state.matched ? <Restaurantviewer popUp={this.state.popUp}loggedIn={ this.state.loggedIn } show={() => this.popUpHandle()} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
 
 
         
@@ -206,7 +201,3 @@ class Home extends Component {
 }
 
 export default Home;
-
-
-// <Categories menu={ this.state.filterMenu } />
-// {this.state.popUp && this.state.matched ? <RestPopUp rest={this.state.matched[0]}/> : ""}
