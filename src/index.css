@@ -1,10 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Questrial');
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
 
-* {
+/** {
   border: 1px green solid;
-}
-
+}*/
 
 body {
   margin: 0;
@@ -261,15 +260,20 @@ i.fa.fa-heart.fa-4x {
 /*////////////////RESTAURANT POP UP//////////////////*/
 
 #popUp {
-  border: 1px black solid;
-  max-width: 800px;
-  max-height: 400px;
-  margin: auto;
-  display:inline-block;
+  border: 4px #040a2f solid;
+  width: 780px;
   z-index: 2;
-  font-size: 12px;
+  font-size: 16px;
   text-align: left;
   padding: 30px;
+  width: 100%;
+  overflow: visible;
+  /*background-color: rgba(255,255,255,.8);*/
+  background-color: white;
+  color: #040a2f;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  margin-top: 250px;
 }
 
 

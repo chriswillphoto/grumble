@@ -26,7 +26,27 @@ class Restaurantviewer extends Component {
     return (
       <div>
         <div className={this.state.animate && this.props.loggedIn ? "imageSlider " + this.state.animate : "imageSlider"} style={ {backgroundImage: `url(${this.props.matched.image})`} } >
-          <div ></div>
+
+        {this.props.popUp ?
+          <div id="popUp">
+            <p className="popUpItem">
+            {this.props.matched.name}
+            <br />
+            {this.props.matched.price}
+            <br />
+            {this.props.matched.address}
+            <br />
+            {this.props.matched.phone_number}
+            <br />
+            <br />
+            {this.props.matched.description}
+            </p>
+          </div>
+          :
+          ""
+        }
+
+        <div></div>
         </div>
         <button className="imageHeading" onClick = {this.handlePopUpClick}><i className="fa fa-info fa-1x"></i> {this.props.matched.name}</button>
         <div className="tinderButtons">
@@ -34,7 +54,7 @@ class Restaurantviewer extends Component {
           <button id="fave" onClick = { (e) => {this.handleClick(e, "fave")} }><i className="fa fa-heart fa-4x"></i></button>
           <button id="yes" onClick = { (e) => {this.handleClick(e, "yes")}  }><i className="fa fa-check fa-5x"></i></button>
 
-          
+
 
 
         </div>
