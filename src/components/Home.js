@@ -5,17 +5,10 @@ import Restaurantviewer from './Restaurantviewer';
 import Login from './Login';
 import RestPopUp from './RestPopUp';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
 import axios from 'axios'
 import Restaurant from './Restaurant'
 import Nav from './Nav';
 import Map from './test'
-=======
-import axios from 'axios';
-import Restaurant from './Restaurant';
-import Nav from './Nav';
-import Map from './Map';
->>>>>>> 2eee19633caa8e92ccc55bd845917f1b88539ddf
 
 
 class Home extends Component {
@@ -31,13 +24,9 @@ class Home extends Component {
       user_faves: null,
       user_maybes: null,
       show_login: false,
-<<<<<<< HEAD
-      login_error: null
-=======
       login_error: null,
       filterMenu: [],
       foodType: ""
->>>>>>> 2eee19633caa8e92ccc55bd845917f1b88539ddf
     }
 
     this.qHandle = this.qHandle.bind(this)
