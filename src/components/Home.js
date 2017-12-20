@@ -6,8 +6,8 @@ import RestPopUp from './RestPopUp';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 import Restaurant from './Restaurant'
-import Nav from './Nav'
-import Map from './Map';
+import Nav from './Nav';
+import Map from './test'
 
 
 class Home extends Component {
@@ -24,12 +24,13 @@ class Home extends Component {
       user_maybes: null,
       show_login: false,
       login_error: null
-
     }
 
     this.qHandle = this.qHandle.bind(this)
     this.popUpHandle = this.popUpHandle.bind(this)
     this.logout = this.logout.bind(this)
+
+
 
     axios.get("http://localhost:5000/restaurants").then(res => {
       this.setState({rests: res.data})
@@ -65,7 +66,7 @@ class Home extends Component {
       sessionStorage.setItem("token", res.data.auth_token)
       this.setState({loggedIn: true, login_error: null})
       window.location.reload()
-      
+
     }).catch( (error) => {
       this.setState({login_error: "Failed Login"})
     })
@@ -145,6 +146,7 @@ class Home extends Component {
   render() {
     return(
       <div>
+        <div id="map"></div>
         <Nav show_login={ () => this.show_login() } loggedIn={this.state.loggedIn} logout={() => this.logout()}/>
         {this.state.login_error ? <h1>{this.state.login_error}</h1> : ""}
         {this.state.show_login ? <Login loginform={(i) => this.loginHandler(i)}/> : ""}
@@ -153,9 +155,8 @@ class Home extends Component {
 
         {this.state.matched ? <Restaurantviewer loggedIn={ this.state.loggedIn } show={() => this.popUpHandle()} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
         {this.state.popUp && this.state.matched ? <RestPopUp rest={this.state.matched[0]}/> : ""}
-        <div className='resmap'>
-        <Map/>
-        </div>
+
+        <Map />
       </div>
 
     );
