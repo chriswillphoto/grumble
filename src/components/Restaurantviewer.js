@@ -33,7 +33,7 @@ class Restaurantviewer extends Component {
     return (
       <div>
         <div className={this.state.animate && this.props.loggedIn ? "imageSlider " + this.state.animate : "imageSlider"} style={ {backgroundImage: `url(${this.props.matched.image})`} } >
-        <p className="suburbTag">{this.props.matched.suburb}</p>
+        <p className="suburbTag">{this.props.matched.suburb.toUpperCase()}</p>
 
         {this.props.popUp ?
           <div id="popUp">
