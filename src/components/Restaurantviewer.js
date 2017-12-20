@@ -88,7 +88,7 @@ class Restaurantviewer extends Component {
           <div className={this.state.animate === "fave" && this.props.loggedIn ? "whatever heart" : "whatever" } ></div>
 
         </div>
-        <button className="imageHeading" onClick = {this.handlePopUpClick}><i className="fa fa-info fa-1x"></i> {this.props.matched.name}</button>
+        <button className="imageHeading" onClick = {this.handlePopUpClick}><i className="fa fa-expand fa-1x"></i> {this.props.matched.name}</button>
         <div className="tinderButtons">
           <button id="no" onClick = { (e) => {this.handleClick(e, "no")} }><i className="fa fa-times fa-5x"></i></button>
           <button id="fave" onClick = { (e) => {this.handleClick(e, "fave")} }><i className="fa fa-heart fa-4x"></i></button>
