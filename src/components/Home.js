@@ -77,7 +77,8 @@ class Home extends Component {
     axios.post("http://grumblefood.herokuapp.com/login", send).then(res => {
       console.log(res)
       sessionStorage.setItem("token", res.data.auth_token)
-      this.setState({loggedIn: true, login_error: null})
+      this.setState({loggedIn: true, login_error: null, show_login: false})
+
       window.location.reload()
 
     }).catch( (error) => {
