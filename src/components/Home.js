@@ -68,8 +68,12 @@ class Home extends Component {
       filtered = this.state.rests.filter( rest => { return rest.suburb.indexOf(e.suburb.toLowerCase()) !== -1 } )
     };
 
+    // if(filtered) {
+    //
+    // }
     if(filtered.length === 0){
       this.setState({matched: null, foodType: ""})
+      alert("There are no restaurants listed for this suburb, sorry")
     }else{
       this.setState({matched: filtered})
     }
@@ -121,6 +125,7 @@ class Home extends Component {
       const a = newmatched.shift()
       if(newmatched.length === 0) {
         this.setState({matched: null, foodType: ""})
+        alert("There are no more restaurants")
       }else{
         this.setState({matched: newmatched})
       }
@@ -176,6 +181,7 @@ class Home extends Component {
 
     if(filtered2.length === 0){
       this.setState({matched: null, foodType: ""})
+      alert('There are no restaurants under this food type')
     }else{
       this.setState({matched: filtered2})
     }
