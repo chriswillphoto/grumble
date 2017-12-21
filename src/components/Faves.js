@@ -64,20 +64,32 @@ class Faves extends Component {
       <div>
         <Nav loggedIn={this.state.loggedIn}/>
         <h1 className="profileHeading">Hello, { this.state.current_user ? this.state.current_user.name : "Current User" }</h1>
+        <h2 className="profileSubHeading"><span id="worksHeading">How it works.</span> Trash the losers. Heart the faves. Click on the winners for location details.</h2>
         <div className="maybes">
-          <h3>Maybes</h3>
+          <h3 className="listHeading">My Shortlist</h3>
           {this.state.maybes ? this.state.maybes.map( (m) => {
             return <Resto key={m.id} id={m.id} name={m.name} favey={(e) => {this.faveHandle(e)} } trashy={(e) => { if(window.confirm("Remove from your matches?")) {this.trashMaybe(e)} }} iconClass={"maybe"} />
           } ) : ""}
         </div>
 
         <div className="faves">
-          <h3>Faves</h3>
+          <h3 className="listHeading">All Time Faves</h3>
           {this.state.faves ? this.state.faves.map( (f) => {
             return <Resto key={f.id} id={f.id} name={f.name} trashy={(e) => { if(window.confirm("Remove from Favourites?")){this.trashFave(e)} }}/>
           } ) : ""}
         </div>
 
+        <div className="processMap">
+          <i className="fa fa-smile-o fa-5x" id="icon1"></i>
+          <i className="fa fa-pie-chart fa-5x" id="icon2"></i>
+          <i className="fa fa-cutlery fa-5x" id="icon3"></i>
+        </div>
+        <div>
+          <p className="iconText">1. Here lies your top choices</p>
+          <p className="iconText">2. Analyse the options</p>
+          <p className="iconText">3. Go eat* Food awaits</p>
+        </div>
+        <p className="fineprint">*Wow youre really organised Susan! (theyll say). <br />Wait your names not Susan, but organised folk have names like Susan so we suggest you go with it.</p>
       </div>
     )
   }
