@@ -27,8 +27,7 @@ class Home extends Component {
       show_login: false,
       login_error: null,
       filterMenu: [],
-      foodType: "",
-      categories: []
+      foodType: ""
 
     }
 
@@ -62,12 +61,15 @@ class Home extends Component {
   qHandle(e){
 
     this.setState({suburb: e.suburb});
-
-    const filtered = this.state.rests.filter(rest => rest.suburb.indexOf(e.suburb.toLowerCase()) !== -1 )
-
+    let filtered;
+    if(this.state.foodType != ""){
+      filtered = this.state.rests.filter( rest => { return rest.categories[0].name.indexOf(e) !== -1 && rest.suburb.indexOf(this.state.suburb.toLowerCase()) !== -1 } )
+    }else{
+      filtered = this.state.rests.filter( rest => { return rest.suburb.indexOf(e.suburb.toLowerCase()) !== -1 } )
+    };
 
     if(filtered.length === 0){
-      this.setState({matched: null})
+      this.setState({matched: null, foodType: ""})
     }else{
       this.setState({matched: filtered})
     }
@@ -103,7 +105,7 @@ class Home extends Component {
       const newmatched = this.state.matched.slice()
       newmatched.shift()
       if(newmatched.length === 0) {
-        this.setState({matched: null})
+        this.setState({matched: null, foodType: ""})
         return
       }
       this.setState({matched: newmatched})
@@ -118,7 +120,7 @@ class Home extends Component {
       const newmatched = this.state.matched.slice()
       const a = newmatched.shift()
       if(newmatched.length === 0) {
-        this.setState({matched: null})
+        this.setState({matched: null, foodType: ""})
       }else{
         this.setState({matched: newmatched})
       }
@@ -143,7 +145,7 @@ class Home extends Component {
       const newmatched = this.state.matched.slice()
       const a = newmatched.shift()
       if(newmatched.length === 0) {
-        this.setState({matched: null})
+        this.setState({matched: null, foodType: ""})
 
       }else{
         this.setState({matched: newmatched})
@@ -168,13 +170,12 @@ class Home extends Component {
 
   foodTypeHandle(e){
     this.setState({foodType: e})
-    const filtered = this.state.rests.filter(rest => rest.suburb.indexOf(this.state.suburb.toLowerCase()) !== -1 )
-    this.setState({matched: filtered})
-    const filtered2 = this.state.matched.filter( rest => { return rest.categories[0].name.indexOf(e) !== -1 } )
+
+    const filtered2 = this.state.rests.filter( rest => { return rest.categories[0].name.indexOf(e) !== -1 && rest.suburb.indexOf(this.state.suburb.toLowerCase()) !== -1 } )
 
 
     if(filtered2.length === 0){
-      this.setState({matched: null})
+      this.setState({matched: null, foodType: ""})
     }else{
       this.setState({matched: filtered2})
     }
