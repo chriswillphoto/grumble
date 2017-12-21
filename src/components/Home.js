@@ -153,7 +153,7 @@ class Home extends Component {
       const a = newmatched.shift()
       if(newmatched.length === 0) {
         this.setState({matched: null, foodType: ""})
-
+        alert("There are no more restaurants under this Suburb")
       }else{
         this.setState({matched: newmatched})
       }
