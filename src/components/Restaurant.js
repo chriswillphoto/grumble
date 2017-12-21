@@ -36,32 +36,32 @@ class Restaurant extends Component {
     return(
       <div>
       <Nav loggedIn={this.state.loggedIn}/>
-      <div>
-        <Map address={this.state.address}/>
-      </div>
-        <h1>{this.state.res_info.name}</h1>
+        <h1 className="restaurantHeading">{this.state.res_info.name}</h1>
         <br />
-        <h3>Address</h3>
-        <p>{this.state.res_info.address}</p>
+        <div className="subInfoContainer">
+          <h3 className="infoItems">Address</h3>
+          <p>{this.state.res_info.address}</p>
+          <br />
+          <h3 className="infoItems">Opening Hours</h3>
+          <p>{this.state.res_info.opening_hours}</p>
         <br />
-        <h3>Price Range</h3>
-        {this.state.res_info.price === 4 ?
-          <span>
-            <i className="fa fa-usd"></i>
-            <i className="fa fa-usd"></i>
-            <i className="fa fa-usd"></i>
-            <i className="fa fa-usd"></i>
-          </span>
-          :
-          "" }
-        {this.state.res_info.price === 3 ?
-          <span>
-            <i className="fa fa-usd"></i>
-            <i className="fa fa-usd"></i>
-            <i className="fa fa-usd"></i>
-          </span>
-          :
-          "" }
+          {this.state.res_info.price === 4 ?
+            <span>
+              <i className="fa fa-usd"></i>
+              <i className="fa fa-usd"></i>
+              <i className="fa fa-usd"></i>
+              <i className="fa fa-usd"></i>
+            </span>
+            :
+            "" }
+          {this.state.res_info.price === 3 ?
+            <span>
+              <i className="fa fa-usd"></i>
+              <i className="fa fa-usd"></i>
+              <i className="fa fa-usd"></i>
+            </span>
+            :
+            "" }
           {this.state.res_info.price === 2 ?
             <span>
               <i className="fa fa-usd"></i>
@@ -69,23 +69,27 @@ class Restaurant extends Component {
             </span>
             :
             "" }
-            {this.state.res_info.price === 1 ?
-              <span>
-                <i className="fa fa-usd"></i>
+          {this.state.res_info.price === 1 ?
+            <span>
+              <i className="fa fa-usd"></i>
               </span>
               :
               "" }
-              <br />
-              <br />
-        <h3>Opening Hours</h3>
-        <p>{this.state.res_info.opening_hours}</p>
+          <br />
+          <br />
+          <div>
+            <Map address={this.state.address}/>
+          </div>
+        </div>
         <br />
-        <h3>Description</h3>
-        <p>{this.state.res_info.description}</p>
-        <img src= {this.state.res_info.image} alt={this.state.res_info.name}/>
+          <p className="descriptionText">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, <br /> <br />and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+          <p className="descriptionHeading">{this.state.res_info.description}</p>
+        <img className="images" src= {this.state.res_info.image} alt={this.state.res_info.name}/>
 
         <LikeButton res_id={this.props.match.params.restaurantId}/>
+
         <DislikeButton res_id={this.props.match.params.restaurantId}/>
+
       </div>
     );
   }
