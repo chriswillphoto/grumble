@@ -24,6 +24,7 @@ class Home extends Component {
       user_faves: null,
       user_maybes: null,
       show_login: false,
+      show_signup: false,
       login_error: null,
       filterMenu: [],
       foodType: ""
@@ -33,19 +34,19 @@ class Home extends Component {
     this.qHandle = this.qHandle.bind(this)
     this.popUpHandle = this.popUpHandle.bind(this)
     this.submitHandler = this.submitHandler.bind(this)
+    this.show_signup = this.show_signup.bind(this)
 
-
-    axios.get("http://grumblefood.herokuapp.com/restaurants").then(res => {
+    axios.get("http://localhost:5000/restaurants").then(res => {
 
       this.setState({rests: res.data})
     })
 
-    axios.get("http://grumblefood.herokuapp.com/categories").then(res => {
+    axios.get("http://localhost:5000/categories").then(res => {
       this.setState({filterMenu: res.data})
     })
 
     if(this.state.loggedIn){
-      axios.get("http://grumblefood.herokuapp.com/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
+      axios.get("http://localhost:5000/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
         this.setState({current_user: res.data[0], user_faves: res.data[1], user_maybes: res.data[2] })
       })
 
@@ -75,7 +76,7 @@ class Home extends Component {
 
   loginHandler(details){
     const send = {email: details.email, password: details.password}
-    axios.post("http://grumblefood.herokuapp.com/login", send).then(res => {
+    axios.post("http://localhost:5000/login", send).then(res => {
       console.log(res)
       sessionStorage.setItem("token", res.data.auth_token)
       this.setState({loggedIn: true, login_error: null, show_login: false})
@@ -90,10 +91,14 @@ class Home extends Component {
 
   show_login(){
     if(this.state.show_login){
-    this.setState({show_login: false})
+      this.setState({show_login: false})
     }else{
-    this.setState({show_login: true})
+      this.setState({show_login: true})
     }
+  }
+
+  show_signup(){
+    this.setState({show_signup: !this.state.show_signup})
   }
 
   yes(f){
@@ -128,7 +133,7 @@ class Home extends Component {
 
 
       if(this.state.user_maybes.indexOf(a.id) === -1 && this.state.user_faves.indexOf(a.id) === -1 ) {
-        axios.put(`http://grumblefood.herokuapp.com/restaurants/${a.id}/maybe`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
+        axios.put(`http://localhost:5000/restaurants/${a.id}/maybe`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
         })
       }else{
         alert("Restaurant has already been added to your profile")
@@ -154,7 +159,7 @@ class Home extends Component {
 
 
       if(this.state.user_faves.indexOf(a.id) === -1 && this.state.user_maybes.indexOf(a.id)) {
-        axios.put(`http://grumblefood.herokuapp.com/restaurants/${a.id}/fave`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
+        axios.put(`http://localhost:5000/restaurants/${a.id}/fave`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
         })
       }else{
         alert("Restaurant has already been added to your profile")
@@ -185,6 +190,13 @@ class Home extends Component {
 
   submitHandler(e){
     console.log(e)
+    if(e.password === e.passwordconfirmation){
+      axios.post("http://localhost:5000/users", { user: {name: e.name, email: e.email, password: e.password, password_confirmation: e.passwordconfirmation}}).then( res => {
+        this.setState({login_error: "Sign up successful, please log in", show_signup: null})
+      })
+    }else{
+      this.setState({login_error: "Passwords don't match"})
+    }
   }
 
 
@@ -192,10 +204,10 @@ class Home extends Component {
     return(
       <div>
         <div id="map"></div>
-        <Nav show_login={ () => this.show_login() } loggedIn={this.state.loggedIn} />
+        <Nav show_login={ () => this.show_login() } loggedIn={this.state.loggedIn} show_signup={ () => this.show_signup() }/>
         {this.state.login_error ? <h1>{this.state.login_error}</h1> : ""}
         {this.state.show_login ? <Login loginform={(i) => this.loginHandler(i)}/> : ""}
-        <SignUp signup={(e) => this.submitHandler(e)}/>
+        {this.state.show_signup ? <SignUp signup={(e) => this.submitHandler(e)}/> : ""}
         <h1 className="siteHeader left">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
         {this.state.filterMenu && this.state.matched ? <Categories menu={ this.state.filterMenu } foodType={(e) => this.foodTypeHandle(e)} /> : ""}

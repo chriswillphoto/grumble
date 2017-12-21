@@ -65,7 +65,7 @@ a#navItem:hover {
   text-decoration: none;
 }
 
-#navItem3, #navItem4 {
+#navItem3, #navItem4, #navItem5 {
   font-size: 22px;
   color: white;
   text-align: right;
@@ -109,6 +109,16 @@ a#navItem:hover {
   text-decoration: underline;
 }
 
+
+/* =========== SignUP==============*/
+
+.signup-button {
+  width: 120px;
+}
+
+#signup-form input {
+  margin-right: 10px;
+}
 
 /*//////////////FOOTER//////////////*/
 
