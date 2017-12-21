@@ -59,7 +59,7 @@ class DislikeButton extends Component {
   }
   render() {
     const text = this.state.disliked ? 'disliked' : 'haven\'t disliked';
-    const label = this.state.disliked ? 'Un-Dislike' : 'Dislike'
+    const label = this.state.disliked ? 'UN-DISLIKE' : 'Dislike'
     return (
       <div className="customContainer">
         <button className="btn btn-primary" onClick={() => this.handleClick() }>

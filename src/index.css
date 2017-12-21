@@ -405,3 +405,33 @@ font-weight: 700;
   width: 960px;
   height: 600px;
 }
+
+/*like button*/
+
+.btn.btn-primary {
+  color: white;
+  background-color: #2E0AE9;
+  font-family: 'Lato', sans-serif;
+  font-size: 32px;
+  font-weight: 300;
+  display: inline-block;
+  width: 160px;
+  height: 80px;
+  margin: 10px;
+  border: none;
+}
+
+.RateContainer {
+  margin: auto;
+  padding: 20px;
+  width: 800px;
+  line-height: 170px;
+}
+
+.RateHeading {
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+  display: inline;
+}
