@@ -5,6 +5,8 @@ import axios from 'axios'
 
 import Nav from './Nav'
 import LikeButton from './LikeButtons'
+import DislikeButton from './DislikeButtons'
+
 
 
 const SERVER_URL = 'http://localhost:5000/restaurants/';
@@ -83,6 +85,7 @@ class Restaurant extends Component {
         <img src= {this.state.res_info.image} alt={this.state.res_info.name}/>
 
         <LikeButton res_id={this.props.match.params.restaurantId}/>
+        <DislikeButton res_id={this.props.match.params.restaurantId}/>
       </div>
     );
   }
