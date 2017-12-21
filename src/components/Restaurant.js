@@ -4,6 +4,7 @@ import Map from './MapEmbed';
 import axios from 'axios'
 
 import Nav from './Nav'
+import LikeButton from './LikeButtons'
 
 
 const SERVER_URL = 'http://localhost:5000/restaurants/';
@@ -47,7 +48,7 @@ class Restaurant extends Component {
         <p>{this.state.res_info.description}</p>
         <img src= {this.state.res_info.image} alt={this.state.res_info.name}/>
 
-
+        <LikeButton res_info={this.state.res_info}/>
       </div>
     );
   }
