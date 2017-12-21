@@ -1,6 +1,4 @@
 import React, { PureComponent as Component } from 'react';
-import LikeButton from './LikeButtons'
-import DislikeButton from './DislikeButtons'
 
 class Restaurantviewer extends Component {
   constructor (props) {

@@ -1,4 +1,3 @@
-import React, { PureComponent as Component } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Routes from './Routes';

@@ -1,5 +1,5 @@
 import React, { PureComponent as Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Map from './MapEmbed';
 import axios from 'axios'
 

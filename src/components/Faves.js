@@ -85,7 +85,7 @@ class Faves extends Component {
           <i className="fa fa-cutlery fa-5x" id="icon3"></i>
         </div>
         <div>
-          <p className="iconText">1. Here lies your top choices</p>
+          <p className="iconText">1. Here lie your top choices</p>
           <p className="iconText">2. Analyse the options</p>
           <p className="iconText">3. Go eat* Food awaits</p>
         </div>
