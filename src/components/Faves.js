@@ -89,7 +89,7 @@ class Faves extends Component {
           <p className="iconText">2. Analyse the options</p>
           <p className="iconText">3. Go eat* Food awaits</p>
         </div>
-        <p className="fineprint">*Wow youre really organised Susan! (theyll say). <br />Wait your names not Susan, but organised folk have names like Susan so we suggest you go with it.</p>
+        <p className="fineprint">*Wow youre really organised Susan! (theyll say). <br />Wait your names not Susan! but organised folk DO have names like Susan, so we suggest you go with it.</p>
       </div>
     )
   }
