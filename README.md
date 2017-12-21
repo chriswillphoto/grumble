@@ -1,4 +1,34 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+**GRUMBLE**
+
+Grumble makes food decisions easy. Forgot having multiple tabs open trying to decide where to eat, as feuds and hanger quickly sets in. Grumble allows users to sign up / log on, search the suburb they want to eat in and toggle through the options, Tinder Style - clicking No: for no thanks. Yes: for 'maybe we should eat here tonight', and heart: for favoriting.
+
+The maybes get added to a shortlist on the user's profile page where they can read more about each restaurant, see its location on Google maps, make a comparison between venues, and ultimately decide where to eat, quickly and painlessly.
+Grumble makes you look and feel efficient!
+
+The Grumble app solves the common question of: 'where / what should we eat? We hope the answer to this question will soon be: 'I don't know, check Grumble'.
+
+Features:
+- Toggle between restaurants, rating them based on current mood for food
+- Search by Sydney suburb
+- Search by category (food type) within suburb
+- Read more about a restaurant and see its location on google maps
+- Keep a favourites list for future reference
+- Like or Dislike a restaurant adding to a tally users can see
+- Admin can add new restaurants and categories in the backend
+
+Future Features:
+- More advanced search filters such as search by multiple suburbs or categories at once, more information on each restaurant.
+- Add a 'get directions' feature to the map
+- Allow multiple image upload so restaurants can showcase more than one scene
+- More seed data
+- Mobile friendly
+
+Current Bugs:
+-
+
+******************************************************************************************
+
+This project was bootstrapped with [Create , React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
@@ -284,7 +314,7 @@ In the WebStorm menu `Run` select `Edit Configurations...`. Then click `+` and s
 
 Start your app by running `npm start`, then press `^D` on macOS or `F9` on Windows and Linux or click the green debug icon to start debugging in WebStorm.
 
-The same way you can debug your application in IntelliJ IDEA Ultimate, PhpStorm, PyCharm Pro, and RubyMine. 
+The same way you can debug your application in IntelliJ IDEA Ultimate, PhpStorm, PyCharm Pro, and RubyMine.
 
 ## Formatting Code Automatically
 
@@ -1822,7 +1852,7 @@ If you’re using [Apache HTTP Server](https://httpd.apache.org/), you need to c
     RewriteRule ^ index.html [QSA,L]
 ```
 
-It will get copied to the `build` folder when you run `npm run build`. 
+It will get copied to the `build` folder when you run `npm run build`.
 
 If you’re using [Apache Tomcat](http://tomcat.apache.org/), you need to follow [this Stack Overflow answer](https://stackoverflow.com/a/41249464/4878474).
 
@@ -2218,7 +2248,7 @@ To resolve this:
 1. Open an issue on the dependency's issue tracker and ask that the package be published pre-compiled.
   * Note: Create React App can consume both CommonJS and ES modules. For Node.js compatibility, it is recommended that the main entry point is CommonJS. However, they can optionally provide an ES module entry point with the `module` field in `package.json`. Note that **even if a library provides an ES Modules version, it should still precompile other ES6 features to ES5 if it intends to support older browsers**.
 
-2. Fork the package and publish a corrected version yourself. 
+2. Fork the package and publish a corrected version yourself.
 
 3. If the dependency is small enough, copy it to your `src/` folder and treat it as application code.
 
