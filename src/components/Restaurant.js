@@ -6,10 +6,11 @@ import axios from 'axios'
 import Nav from './Nav'
 import LikeButton from './LikeButtons'
 import DislikeButton from './DislikeButtons'
+import RatingBox from './ratingbox'
 
 
 
-const SERVER_URL = 'http://grumblefood.herokuapp.com/restaurants/';
+const SERVER_URL = 'http://localhost:5000/restaurants/';
 
 class Restaurant extends Component {
   constructor(props) {
@@ -20,15 +21,31 @@ class Restaurant extends Component {
       res_info: {},
       resto_id: match.params.restaurantId,
       address: null,
-      loggedIn: sessionStorage.getItem('token')
+      loggedIn: sessionStorage.getItem('token'),
+      likes: 0,
+      dislikes: 0
      };
+
+     this.likeclicker = this.likeclicker.bind(this)
+     this.dislikeclicker = this.dislikeclicker.bind(this)
 
     axios.get( SERVER_URL + this.state.resto_id ).then( results => {
       this.setState({res_info: results.data})
       this.setState({address: this.state.res_info.address})
       this.setState( {address: this.state.address.split(/[\s,]+/).join("%20") } )
+      this.setState({likes: this.state.res_info.likes.length, dislikes: this.state.res_info.dislikes.length})
       console.log(this.state)
     });
+  }
+
+  likeclicker(updown){
+    const i = this.state.likes
+    updown === "up" ? this.setState({likes: i + 1}) : this.setState({likes: i - 1})
+  }
+
+  dislikeclicker(updown){
+    const i = this.state.dislikes
+    updown === "up" ? this.setState({dislikes: i + 1}) : this.setState({dislikes: i - 1})
   }
 
   render() {
@@ -87,9 +104,10 @@ class Restaurant extends Component {
         <img className="images" src= {this.state.res_info.image} alt={this.state.res_info.name}/>
 
         <div className="RateContainer">
+          <RatingBox likes={this.state.likes} dislikes={this.state.dislikes} />
           <p className="RateHeading">RATE IT.</p>
-          <LikeButton res_id={this.props.match.params.restaurantId}/>
-          <DislikeButton res_id={this.props.match.params.restaurantId}/>
+          <LikeButton res_id={this.props.match.params.restaurantId} click={(i) => this.likeclicker(i)}/>
+          <DislikeButton res_id={this.props.match.params.restaurantId} click={(i) => this.dislikeclicker(i)}/>
         </div>
 
       </div>

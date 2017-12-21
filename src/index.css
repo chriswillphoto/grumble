@@ -421,6 +421,10 @@ font-weight: 700;
   border: none;
 }
 
+.btn:hover {
+  cursor: pointer;
+}
+
 .RateContainer {
   margin: auto;
   padding: 20px;
@@ -434,4 +438,16 @@ font-weight: 700;
   font-weight: 700;
   text-align: left;
   display: inline;
+}
+
+/* ================= Rating Box  ===============*/
+
+.likebox, .dislikebox, .likebox i, .likebox h4, .dislikebox i, .dislikebox h4 {
+  display: inline-block;
+  margin: 0 5px;
+  line-height: 20px;
+}
+
+.ratingbox {
+  line-height: 20px;
 }

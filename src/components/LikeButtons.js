@@ -16,10 +16,10 @@ class LikeButton extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.addLike = this.addLike.bind(this)
     this.unlike = this.unlike.bind(this)
-    axios.get(`http://grumblefood.herokuapp.com/restaurants/${this.props.res_id}`).then( res => {
+    axios.get(`http://localhost:5000/restaurants/${this.props.res_id}`).then( res => {
       this.setState({res_info: res.data})
 
-      axios.get("http://grumblefood.herokuapp.com/likes", {headers: {Authorization: this.state.loggedIn}}).then(res => {
+      axios.get("http://localhost:5000/likes", {headers: {Authorization: this.state.loggedIn}}).then(res => {
         this.setState({ current_likes: res.data });
         if(this.state.current_likes.indexOf(this.state.res_info.id) !== -1){
           this.setState({liked: true})
@@ -29,7 +29,7 @@ class LikeButton extends Component {
 
     }) // first get then
 
-    axios.get("http://grumblefood.herokuapp.com/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
+    axios.get("http://localhost:5000/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
       this.setState({current_user: res.data[0]})
     })
   }
@@ -37,23 +37,26 @@ class LikeButton extends Component {
   handleClick() {
     if(this.state.liked){
       this.unlike(this.state.res_info.id)
+      this.props.click("down")
     }else{
       this.addLike(this.state.res_info.id)
+      this.props.click("up")
     }
 
     this.setState({
       liked: !this.state.liked
     });
 
+
   }
 
   addLike(restaurant_id) {
-    axios.post(`http://grumblefood.herokuapp.com/likes`, {restaurant_id: restaurant_id}, {headers: {Authorization: this.state.loggedIn}}).then( results => {
+    axios.post(`http://localhost:5000/likes`, {restaurant_id: restaurant_id}, {headers: {Authorization: this.state.loggedIn}}).then( results => {
     });
   }
 
   unlike(restaurant_id){
-    axios.delete(`http://grumblefood.herokuapp.com/likes/${restaurant_id}/${this.state.current_user.id}`, {headers: {Authorization: this.state.loggedIn}}).then( results => {
+    axios.delete(`http://localhost:5000/likes/${restaurant_id}/${this.state.current_user.id}`, {headers: {Authorization: this.state.loggedIn}}).then( results => {
 
     })
 
@@ -61,7 +64,6 @@ class LikeButton extends Component {
   }
 
   render() {
-    const text = this.state.liked ? 'liked' : 'haven\'t liked';
     const label = this.state.liked ? 'UNLIKE' : 'Like'
 
     return (
