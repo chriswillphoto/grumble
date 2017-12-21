@@ -1,36 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Questrial');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-div h3 {
-  margin: 5px 0 15px 0;
-}
-
-i {
-  color: red;
+  font-family: 'Questrial', sans-serif;
 }
 
 .App {
   text-align: center;
 }
 
+.worksHeading {
+  font-weight: 700;
+}
+
 .profileHeading {
   margin: 20px 0;
+  font-size: 50px;
+  font-weight: 300;
+}
+
+.profileSubHeading {
+  font-family: 'Lato', sans-serif;
+  font-size: 28px;
+  margin: 4px 0 40px 0;
+  color: #13161d;
+  font-weight: 300;
 }
 
 .maybes, .faves {
   min-width: 500px;
-  min-height: 200px;
-  border: 1px solid black;
+  min-height: 450px;
+  border: 4px solid black;
   display: inline-block;
-  margin: 20px 50px;
+  margin: 20px 50px 80px;
   vertical-align: top;
   padding: 10px;
   border-radius: 1.2em;
-  background-color: #C1ECFF;
+  background-color: #f5f5f5;
   color: grey;
+}
+
+h3.listHeading {
+  font-family: 'Lato', sans-serif;
+  font-size: 34px;
+  margin: 5px 0 20px 0;
+  color: #13161d;
+  font-weight: 300;
 }
 
 .buttonwrap {
@@ -50,22 +68,24 @@ i {
 
 .restobar a {
   min-width: 280px;
+  font-size: 20px;
 }
 
 .restobar button i {
   color: white;
   /*background-color: #de6262;*/
   /*line-height: 33px;*/
-  font-size: 17px;
+  font-size: 20px;
 }
 
 .restobar {
-  border: 1px solid grey;
+  border: 1px solid black;
   width: 80%;
-  margin: 2px auto;
+  margin: 10px auto;
   height: 35px;
   line-height: 35px;
-  background: linear-gradient(-90deg, #de6262, #ffb88c);
+  /*background: linear-gradient(-90deg, #de6262, #ffb88c);*/
+  background-color: red;
   text-align: left;
   padding-left: 10px;
   border-radius: 5px;
@@ -82,4 +102,54 @@ i {
 
 .customContainer {
   /* border: 1px solid black; */
+}
+
+.processMap {
+  margin: auto;
+  text-align: center;
+  width: 960px;
+}
+
+#icon1 {
+  padding-left: 20px;
+  padding-right: 130px;
+  color: #040a2f;
+  font-size: 130px;
+  font-weight: 400px;
+}
+
+#icon2 {
+  padding-left: 130px;
+  padding-right: 130px;
+  color: #040a2f;
+  font-size: 130px;
+  font-weight: 400px;
+}
+
+#icon3 {
+  padding-left: 130px;
+  color: #040a2f;
+  font-size: 130px;
+  font-weight: 400px;
+}
+
+.iconText {
+  display: inline-block;
+  max-width: 450px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  min-height: 200px;
+  padding: 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+.fineprint {
+margin-bottom: 38px;
+margin-left: 36px;
+max-width: 420px;
+font-family: 'Lato', sans-serif;
+font-weight: 700;
+text-align: left;
 }

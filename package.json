@@ -10,6 +10,7 @@
     "react-async-script-loader": "^0.3.0",
     "react-confirm-dialog": "^1.0.5",
     "react-dom": "^16.2.0",
+    "react-favicon": "0.0.11",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17"
   },

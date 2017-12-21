@@ -26,8 +26,8 @@ class Resto extends Component {
         <a href={`http://localhost:3000/#/restaurant/${this.props.id}`} >{this.props.name}</a>
         {this.props.iconClass === "maybe" ?
           <div className="buttonwrap">
-          <button onClick={ () => { this.trashHandler(this.props.id) } }><i className="fa fa-trash-o fa-2x" /></button>
-          <button onClick={ () => {this.faveHandler(this.props.id)} }><i className="fa fa-heart-o fa-2x"/></button>
+          <button onClick={ () => { this.trashHandler(this.props.id) } }><i className="fa fa-trash-o fa-1x"></i></button>
+          <button onClick={ () => {this.faveHandler(this.props.id)} }><i className="fa fa-heart-o fa-1x"></i></button>
           </div>
            :
           <div className="buttonwrap">
