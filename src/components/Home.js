@@ -38,7 +38,7 @@ class Home extends Component {
 
 
     axios.get("http://grumblefood.herokuapp.com/restaurants").then(res => {
-      // console.log(res.data[0].categories[0].name);
+
       this.setState({rests: res.data})
       console.log(this.state.rests)
     })
@@ -60,10 +60,11 @@ class Home extends Component {
 
 
   qHandle(e){
-    // console.log(e)
+
     this.setState({suburb: e.suburb});
 
     const filtered = this.state.rests.filter(rest => rest.suburb.indexOf(e.suburb.toLowerCase()) !== -1 )
+
 
     if(filtered.length === 0){
       this.setState({matched: null})
@@ -167,13 +168,15 @@ class Home extends Component {
 
   foodTypeHandle(e){
     this.setState({foodType: e})
-    const filtered = this.state.matched.filter( rest => { return rest.categories[0].name.indexOf(e) !== -1 } )
+    const filtered = this.state.rests.filter(rest => rest.suburb.indexOf(this.state.suburb.toLowerCase()) !== -1 )
+    this.setState({matched: filtered})
+    const filtered2 = this.state.matched.filter( rest => { return rest.categories[0].name.indexOf(e) !== -1 } )
 
 
-    if(filtered.length === 0){
+    if(filtered2.length === 0){
       this.setState({matched: null})
     }else{
-      this.setState({matched: filtered})
+      this.setState({matched: filtered2})
     }
   }
 
