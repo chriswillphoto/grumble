@@ -166,17 +166,14 @@ class Home extends Component {
 
   foodTypeHandle(e){
     this.setState({foodType: e})
-    console.log(this.state.matched)
+    const filtered = this.state.matched.filter( rest => { return rest.categories[0].name.indexOf(e) !== -1 } )
 
-    // const filtered = this.state.matched.filter( rest => {
-    //   rest.
-    // } )
 
-    // if(filtered.length === 0){
-    //   this.setState({matched: null})
-    // }else{
-    //   this.setState({matched: filtered})
-    // }
+    if(filtered.length === 0){
+      this.setState({matched: null})
+    }else{
+      this.setState({matched: filtered})
+    }
   }
 
 
