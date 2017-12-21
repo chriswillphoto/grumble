@@ -38,12 +38,46 @@ class Restaurant extends Component {
         <Map address={this.state.address}/>
       </div>
         <h1>{this.state.res_info.name}</h1>
+        <br />
         <h3>Address</h3>
         <p>{this.state.res_info.address}</p>
+        <br />
         <h3>Price Range</h3>
-        <p>{this.state.res_info.price}</p>
+        {this.state.res_info.price === 4 ?
+          <span>
+            <i className="fa fa-usd"></i>
+            <i className="fa fa-usd"></i>
+            <i className="fa fa-usd"></i>
+            <i className="fa fa-usd"></i>
+          </span>
+          :
+          "" }
+        {this.state.res_info.price === 3 ?
+          <span>
+            <i className="fa fa-usd"></i>
+            <i className="fa fa-usd"></i>
+            <i className="fa fa-usd"></i>
+          </span>
+          :
+          "" }
+          {this.state.res_info.price === 2 ?
+            <span>
+              <i className="fa fa-usd"></i>
+              <i className="fa fa-usd"></i>
+            </span>
+            :
+            "" }
+            {this.state.res_info.price === 1 ?
+              <span>
+                <i className="fa fa-usd"></i>
+              </span>
+              :
+              "" }
+              <br />
+              <br />
         <h3>Opening Hours</h3>
         <p>{this.state.res_info.opening_hours}</p>
+        <br />
         <h3>Description</h3>
         <p>{this.state.res_info.description}</p>
         <img src= {this.state.res_info.image} alt={this.state.res_info.name}/>
