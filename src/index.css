@@ -306,7 +306,7 @@ i.fa.fa-heart.fa-4x {
   text-align: left;
   padding: 30px;
   width: 100%;
-  height: 220px;
+  height: 240px;
   background-color: white;
   color: #040a2f;
   font-family: 'Lato', sans-serif;
@@ -404,4 +404,34 @@ font-weight: 700;
 .images {
   width: 960px;
   height: 600px;
+}
+
+/*like button*/
+
+.btn.btn-primary {
+  color: white;
+  background-color: #36f582;
+  font-family: 'Lato', sans-serif;
+  font-size: 32px;
+  font-weight: 300;
+  display: inline-block;
+  width: 200px;
+  height: 80px;
+  margin: 10px;
+  border: none;
+}
+
+.RateContainer {
+  margin: auto;
+  padding: 20px;
+  width: 800px;
+  line-height: 170px;
+}
+
+.RateHeading {
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+  display: inline;
 }

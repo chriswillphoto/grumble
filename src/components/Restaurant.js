@@ -86,9 +86,11 @@ class Restaurant extends Component {
           <p className="descriptionHeading">{this.state.res_info.description}</p>
         <img className="images" src= {this.state.res_info.image} alt={this.state.res_info.name}/>
 
-        <LikeButton res_id={this.props.match.params.restaurantId}/>
-
-        <DislikeButton res_id={this.props.match.params.restaurantId}/>
+        <div className="RateContainer">
+          <p className="RateHeading">RATE IT.</p>
+          <LikeButton res_id={this.props.match.params.restaurantId}/>
+          <DislikeButton res_id={this.props.match.params.restaurantId}/>
+        </div>
 
       </div>
     );

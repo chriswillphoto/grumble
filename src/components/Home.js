@@ -27,8 +27,7 @@ class Home extends Component {
       show_login: false,
       login_error: null,
       filterMenu: [],
-      foodType: "",
-      categories: []
+      foodType: ""
 
     }
 
@@ -38,7 +37,7 @@ class Home extends Component {
 
 
     axios.get("http://grumblefood.herokuapp.com/restaurants").then(res => {
-      // console.log(res.data[0].categories[0].name);
+
       this.setState({rests: res.data})
       console.log(this.state.rests)
     })
@@ -60,16 +59,20 @@ class Home extends Component {
 
 
   qHandle(e){
-    // console.log(e)
-    this.setState({suburb: e.suburb});
 
-    const filtered = this.state.rests.filter(rest => rest.suburb.indexOf(e.suburb.toLowerCase()) !== -1 )
+    this.setState({suburb: e.suburb});
+    let filtered;
+    if(this.state.foodType != ""){
+      filtered = this.state.rests.filter( rest => { return rest.categories[0].name.indexOf(e) !== -1 && rest.suburb.indexOf(this.state.suburb.toLowerCase()) !== -1 } )
+    }else{
+      filtered = this.state.rests.filter( rest => { return rest.suburb.indexOf(e.suburb.toLowerCase()) !== -1 } )
+    };
 
     // if(filtered) {
     //
     // }
     if(filtered.length === 0){
-      this.setState({matched: null})
+      this.setState({matched: null, foodType: ""})
       alert("There are no restaurants listed for this suburb, sorry")
     }else{
       this.setState({matched: filtered})
@@ -81,7 +84,8 @@ class Home extends Component {
     axios.post("http://grumblefood.herokuapp.com/login", send).then(res => {
       console.log(res)
       sessionStorage.setItem("token", res.data.auth_token)
-      this.setState({loggedIn: true, login_error: null})
+      this.setState({loggedIn: true, login_error: null, show_login: false})
+
       window.location.reload()
 
     }).catch( (error) => {
@@ -105,7 +109,7 @@ class Home extends Component {
       const newmatched = this.state.matched.slice()
       newmatched.shift()
       if(newmatched.length === 0) {
-        this.setState({matched: null})
+        this.setState({matched: null, foodType: ""})
         return
       }
       this.setState({matched: newmatched})
@@ -120,7 +124,7 @@ class Home extends Component {
       const newmatched = this.state.matched.slice()
       const a = newmatched.shift()
       if(newmatched.length === 0) {
-        this.setState({matched: null})
+        this.setState({matched: null, foodType: ""})
         alert("There are no more restaurants")
       }else{
         this.setState({matched: newmatched})
@@ -146,7 +150,7 @@ class Home extends Component {
       const newmatched = this.state.matched.slice()
       const a = newmatched.shift()
       if(newmatched.length === 0) {
-        this.setState({matched: null})
+        this.setState({matched: null, foodType: ""})
 
       }else{
         this.setState({matched: newmatched})
@@ -171,14 +175,15 @@ class Home extends Component {
 
   foodTypeHandle(e){
     this.setState({foodType: e})
-    const filtered = this.state.matched.filter( rest => { return rest.categories[0].name.indexOf(e) !== -1 } )
+
+    const filtered2 = this.state.rests.filter( rest => { return rest.categories[0].name.indexOf(e) !== -1 && rest.suburb.indexOf(this.state.suburb.toLowerCase()) !== -1 } )
 
 
-    if(filtered.length === 0){
-      this.setState({matched: null})
+    if(filtered2.length === 0){
+      this.setState({matched: null, foodType: ""})
       alert('There are no restaurants under this food type')
     }else{
-      this.setState({matched: filtered})
+      this.setState({matched: filtered2})
     }
   }
 
