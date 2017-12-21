@@ -36,19 +36,19 @@ class Home extends Component {
 
 
 
-    axios.get("http://grumblefood.herokuapp.com/restaurants").then(res => {
+    axios.get("http://localhost:5000/restaurants").then(res => {
 
       this.setState({rests: res.data})
       console.log(this.state.rests)
     })
 
-    axios.get("http://grumblefood.herokuapp.com/categories").then(res => {
+    axios.get("http://localhost:5000/categories").then(res => {
       this.setState({filterMenu: res.data})
         console.log("menu", this.state.filterMenu);
     })
 
     if(this.state.loggedIn){
-      axios.get("http://grumblefood.herokuapp.com/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
+      axios.get("http://localhost:5000/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
         this.setState({current_user: res.data[0], user_faves: res.data[1], user_maybes: res.data[2] })
         console.log(this.state)
       })
@@ -81,7 +81,7 @@ class Home extends Component {
 
   loginHandler(details){
     const send = {email: details.email, password: details.password}
-    axios.post("http://grumblefood.herokuapp.com/login", send).then(res => {
+    axios.post("http://localhost:5000/login", send).then(res => {
       console.log(res)
       sessionStorage.setItem("token", res.data.auth_token)
       this.setState({loggedIn: true, login_error: null, show_login: false})
@@ -134,7 +134,7 @@ class Home extends Component {
 
 
       if(this.state.user_maybes.indexOf(a.id) === -1 && this.state.user_faves.indexOf(a.id) === -1 ) {
-        axios.put(`http://grumblefood.herokuapp.com/restaurants/${a.id}/maybe`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
+        axios.put(`http://localhost:5000/restaurants/${a.id}/maybe`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
         })
       }else{
         alert("Restaurant has already been added to your profile")
@@ -160,7 +160,7 @@ class Home extends Component {
 
 
       if(this.state.user_faves.indexOf(a.id) === -1 && this.state.user_maybes.indexOf(a.id)) {
-        axios.put(`http://grumblefood.herokuapp.com/restaurants/${a.id}/fave`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
+        axios.put(`http://localhost:5000/restaurants/${a.id}/fave`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
         })
       }else{
         alert("Restaurant has already been added to your profile")
