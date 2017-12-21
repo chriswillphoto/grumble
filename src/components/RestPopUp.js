@@ -1,7 +1,5 @@
 import React, { PureComponent as Component } from 'react';
 
-import axios from 'axios';
-
 class RestPopUp extends Component {
 
   render () {

@@ -3,11 +3,9 @@ import Searchbar from './Searchbar';
 import Categories from './Categories';
 import Restaurantviewer from './Restaurantviewer';
 import Login from './Login';
-import RestPopUp from './RestPopUp';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import axios from 'axios';
-import Restaurant from './Restaurant';
 import Nav from './Nav';
 
 
@@ -39,18 +37,15 @@ class Home extends Component {
     axios.get("http://localhost:5000/restaurants").then(res => {
 
       this.setState({rests: res.data})
-      console.log(this.state.rests)
     })
 
     axios.get("http://localhost:5000/categories").then(res => {
       this.setState({filterMenu: res.data})
-        console.log("menu", this.state.filterMenu);
     })
 
     if(this.state.loggedIn){
       axios.get("http://localhost:5000/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
         this.setState({current_user: res.data[0], user_faves: res.data[1], user_maybes: res.data[2] })
-        console.log(this.state)
       })
 
     }
@@ -62,18 +57,16 @@ class Home extends Component {
 
     this.setState({suburb: e.suburb});
     let filtered;
-    if(this.state.foodType != ""){
+    if(this.state.foodType !== ""){
       filtered = this.state.rests.filter( rest => { return rest.categories[0].name.indexOf(e) !== -1 && rest.suburb.indexOf(this.state.suburb.toLowerCase()) !== -1 } )
     }else{
       filtered = this.state.rests.filter( rest => { return rest.suburb.indexOf(e.suburb.toLowerCase()) !== -1 } )
     };
 
-    // if(filtered) {
-    //
-    // }
+
     if(filtered.length === 0){
       this.setState({matched: null, foodType: ""})
-      alert("There are no restaurants listed for this suburb, sorry")
+      alert("There are no more restaurants listed for this suburb, sorry")
     }else{
       this.setState({matched: filtered})
     }
@@ -110,6 +103,7 @@ class Home extends Component {
       newmatched.shift()
       if(newmatched.length === 0) {
         this.setState({matched: null, foodType: ""})
+        alert("There are no more restaurants")
         return
       }
       this.setState({matched: newmatched})
@@ -151,7 +145,7 @@ class Home extends Component {
       const a = newmatched.shift()
       if(newmatched.length === 0) {
         this.setState({matched: null, foodType: ""})
-
+        alert("There are no more restaurants")
       }else{
         this.setState({matched: newmatched})
       }
@@ -181,7 +175,7 @@ class Home extends Component {
 
     if(filtered2.length === 0){
       this.setState({matched: null, foodType: ""})
-      alert('There are no restaurants under this food type')
+      alert('There are no more restaurants under this food type')
     }else{
       this.setState({matched: filtered2})
     }

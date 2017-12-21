@@ -18,7 +18,9 @@ export default class Maps extends Component {
     <iframe
       width="500"
       height="300"
-     src={`https://www.google.com/maps/embed/v1/place?q=${this.props.address}&key=${this.state.key}`}>
+     src={`https://www.google.com/maps/embed/v1/place?q=${this.props.address}&key=${this.state.key}`}
+     title="restaurant address"
+     >
      </iframe>
     </div>
     )
