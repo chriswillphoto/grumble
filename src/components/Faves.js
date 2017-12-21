@@ -17,7 +17,7 @@ class Faves extends Component {
 
 
     if(this.state.loggedIn){
-      axios.get("http://grumblefood.herokuapp.com/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
+      axios.get("https://grumblefood.herokuapp.com/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
         this.setState({current_user: res.data[0], faves: res.data[3], maybes: res.data[4] })
         console.log(this.state)
       } )
@@ -35,8 +35,8 @@ class Faves extends Component {
     const a = oldm.splice(index, 1)
 
     this.setState({maybes: oldm, faves: oldf})
-    axios.put("http://grumblefood.herokuapp.com/maybes", {restaurant_id: a[0].id}, {headers: {Authorization: this.state.loggedIn}}).then(res => { console.log(res) })
-    axios.put("http://grumblefood.herokuapp.com/favourites", {restaurant_id: a[0].id}, {headers: {Authorization: this.state.loggedIn}}).then(res => { console.log(res) })
+    axios.put("https://grumblefood.herokuapp.com/maybes", {restaurant_id: a[0].id}, {headers: {Authorization: this.state.loggedIn}}).then(res => { console.log(res) })
+    axios.put("https://grumblefood.herokuapp.com/favourites", {restaurant_id: a[0].id}, {headers: {Authorization: this.state.loggedIn}}).then(res => { console.log(res) })
 
   }
 
@@ -46,7 +46,7 @@ class Faves extends Component {
     const index = maybs.indexOf( obj )
     const a = maybs.splice(index, 1)
     this.setState({maybes: maybs})
-    axios.put("http://grumblefood.herokuapp.com/maybes", {restaurant_id: a[0].id}, {headers: {Authorization: this.state.loggedIn}}).then(res => { console.log(res) })
+    axios.put("https://grumblefood.herokuapp.com/maybes", {restaurant_id: a[0].id}, {headers: {Authorization: this.state.loggedIn}}).then(res => { console.log(res) })
   }
 
   trashFave(e){
@@ -56,7 +56,7 @@ class Faves extends Component {
     const a = faves.splice(index, 1)
     console.log(a)
     this.setState({faves})
-    axios.put("http://grumblefood.herokuapp.com/favourites", {restaurant_id: a[0].id}, {headers: {Authorization: this.state.loggedIn}}).then(res => { console.log(res) })
+    axios.put("https://grumblefood.herokuapp.com/favourites", {restaurant_id: a[0].id}, {headers: {Authorization: this.state.loggedIn}}).then(res => { console.log(res) })
   }
 
   render(){
