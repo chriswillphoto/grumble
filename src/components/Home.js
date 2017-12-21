@@ -32,20 +32,20 @@ class Home extends Component {
 
     this.qHandle = this.qHandle.bind(this)
     this.popUpHandle = this.popUpHandle.bind(this)
+    this.submitHandler = this.submitHandler.bind(this)
 
 
-
-    axios.get("http://localhost:5000/restaurants").then(res => {
+    axios.get("http://grumblefood.herokuapp.com/restaurants").then(res => {
 
       this.setState({rests: res.data})
     })
 
-    axios.get("http://localhost:5000/categories").then(res => {
+    axios.get("http://grumblefood.herokuapp.com/categories").then(res => {
       this.setState({filterMenu: res.data})
     })
 
     if(this.state.loggedIn){
-      axios.get("http://localhost:5000/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
+      axios.get("http://grumblefood.herokuapp.com/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
         this.setState({current_user: res.data[0], user_faves: res.data[1], user_maybes: res.data[2] })
       })
 
@@ -75,7 +75,7 @@ class Home extends Component {
 
   loginHandler(details){
     const send = {email: details.email, password: details.password}
-    axios.post("http://localhost:5000/login", send).then(res => {
+    axios.post("http://grumblefood.herokuapp.com/login", send).then(res => {
       console.log(res)
       sessionStorage.setItem("token", res.data.auth_token)
       this.setState({loggedIn: true, login_error: null, show_login: false})
@@ -128,7 +128,7 @@ class Home extends Component {
 
 
       if(this.state.user_maybes.indexOf(a.id) === -1 && this.state.user_faves.indexOf(a.id) === -1 ) {
-        axios.put(`http://localhost:5000/restaurants/${a.id}/maybe`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
+        axios.put(`http://grumblefood.herokuapp.com/restaurants/${a.id}/maybe`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
         })
       }else{
         alert("Restaurant has already been added to your profile")
@@ -154,7 +154,7 @@ class Home extends Component {
 
 
       if(this.state.user_faves.indexOf(a.id) === -1 && this.state.user_maybes.indexOf(a.id)) {
-        axios.put(`http://localhost:5000/restaurants/${a.id}/fave`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
+        axios.put(`http://grumblefood.herokuapp.com/restaurants/${a.id}/fave`, a, {headers: {Authorization: this.state.loggedIn}}).then( res => {
         })
       }else{
         alert("Restaurant has already been added to your profile")
@@ -183,8 +183,9 @@ class Home extends Component {
     }
   }
 
-
-
+  submitHandler(e){
+    console.log(e)
+  }
 
 
   render() {
@@ -194,7 +195,7 @@ class Home extends Component {
         <Nav show_login={ () => this.show_login() } loggedIn={this.state.loggedIn} />
         {this.state.login_error ? <h1>{this.state.login_error}</h1> : ""}
         {this.state.show_login ? <Login loginform={(i) => this.loginHandler(i)}/> : ""}
-        <SignUp />
+        <SignUp signup={(e) => this.submitHandler(e)}/>
         <h1 className="siteHeader left">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
         {this.state.filterMenu && this.state.matched ? <Categories menu={ this.state.filterMenu } foodType={(e) => this.foodTypeHandle(e)} /> : ""}
