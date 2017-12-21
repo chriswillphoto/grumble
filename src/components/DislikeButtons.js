@@ -17,10 +17,10 @@ class DislikeButton extends Component {
     this.addDislike = this.addDislike.bind(this);
     this.unDislike = this.unDislike.bind(this);
 
-    axios.get(`http://localhost:5000/restaurants/${this.props.res_id}`).then( res => {
+    axios.get(`http://grumblefood.herokuapp.com/restaurants/${this.props.res_id}`).then( res => {
       this.setState({res_info: res.data})
 
-      axios.get("http://localhost:5000/dislikes", {headers: {Authorization: this.state.loggedIn}}).then(res => {
+      axios.get("http://grumblefood.herokuapp.com/dislikes", {headers: {Authorization: this.state.loggedIn}}).then(res => {
         this.setState({ current_dislikes: res.data });
         if(this.state.current_dislikes.indexOf(this.state.res_info.id) !== -1){
           this.setState({disliked: true})
@@ -30,7 +30,7 @@ class DislikeButton extends Component {
 
     })
 
-    axios.get("http://localhost:5000/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
+    axios.get("http://grumblefood.herokuapp.com/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
       this.setState({current_user: res.data[0]})
     })
   }
@@ -50,12 +50,12 @@ class DislikeButton extends Component {
   }
 
   addDislike(restaurant_id) {
-    axios.post(`http://localhost:5000/dislikes`, {restaurant_id: restaurant_id}, {headers: {Authorization: this.state.loggedIn}}).then( results => {
+    axios.post(`http://grumblefood.herokuapp.com/dislikes`, {restaurant_id: restaurant_id}, {headers: {Authorization: this.state.loggedIn}}).then( results => {
     });
   }
 
   unDislike(restaurant_id) {
-    axios.delete(`http://localhost:5000/dislikes/${restaurant_id}/${this.state.current_user.id}`, {headers: {Authorization: this.state.loggedIn}}).then( results => {
+    axios.delete(`http://grumblefood.herokuapp.com/dislikes/${restaurant_id}/${this.state.current_user.id}`, {headers: {Authorization: this.state.loggedIn}}).then( results => {
 
     })
 

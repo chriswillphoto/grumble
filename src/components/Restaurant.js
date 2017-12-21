@@ -10,7 +10,7 @@ import RatingBox from './ratingbox'
 
 
 
-const SERVER_URL = 'http://localhost:5000/restaurants/';
+const SERVER_URL = 'http://grumblefood.herokuapp.com/restaurants/';
 
 class Restaurant extends Component {
   constructor(props) {
