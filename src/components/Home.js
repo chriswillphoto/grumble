@@ -3,6 +3,7 @@ import Searchbar from './Searchbar';
 import Categories from './Categories';
 import Restaurantviewer from './Restaurantviewer';
 import Login from './Login';
+import SignUp from './signup'
 // import { Link } from 'react-router-dom';
 
 import axios from 'axios';
@@ -193,6 +194,7 @@ class Home extends Component {
         <Nav show_login={ () => this.show_login() } loggedIn={this.state.loggedIn} />
         {this.state.login_error ? <h1>{this.state.login_error}</h1> : ""}
         {this.state.show_login ? <Login loginform={(i) => this.loginHandler(i)}/> : ""}
+        <SignUp />
         <h1 className="siteHeader left">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
         {this.state.filterMenu && this.state.matched ? <Categories menu={ this.state.filterMenu } foodType={(e) => this.foodTypeHandle(e)} /> : ""}
