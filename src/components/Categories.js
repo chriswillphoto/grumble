@@ -22,7 +22,7 @@ class Categories extends Component {
         onChange={(event) => this._handleSelection(event)} >
       <option value={""}>Choose by Food Type</option>
       {this.props.menu.map( (p) => {
-        return <option key= {p.id} value={[p.id, p.name]}>{p.name}
+        return <option key= {p.id} value={ p.name }>{p.name}
         </option>
       })}
       </select>
