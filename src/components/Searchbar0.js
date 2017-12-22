@@ -25,7 +25,7 @@ class Searchbar extends Component {
 
   _handleSubmit(e) {
     e.preventDefault();
-    let searchUrl = `http://maps.googleapis.com/maps/api/geocode/json?address=${this.state.suburb}&=AIzaSyDVesZNeF7rAKoUimZKySRNeGstAlNdsFg`
+    let searchUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.suburb}&=AIzaSyDVesZNeF7rAKoUimZKySRNeGstAlNdsFg`
 
     axios.get(searchUrl).then( results => {
       this.setState({ longitude: results.data.results[0].geometry.location.lng,
