@@ -9,16 +9,16 @@ class Nav extends Component {
 
   logout(){
     sessionStorage.removeItem("token")
-    window.location.href = "http://localhost:3000/"
+    window.location.href = "https://chriswillphoto.github.io/restotinder_react/#/"
   }
 
   render(){
     return(
       <nav>
-          <a id="navItem1" href="/">G</a>
+          <a id="navItem1" href="/restotinder_react/">G</a>
           {this.props.loggedIn ?
             <div className="navbuttons">
-            <a id="navItem2" href="/#/faves">See my list</a>
+            <a id="navItem2" href="restotinder_react/#/faves">See my list</a>
             <a id="navItem3" onClick={() => this.logout()}>Logout</a>
             </div>
             :

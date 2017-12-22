@@ -22,7 +22,7 @@ class Resto extends Component {
   render(){
     return(
       <div className="restobar" >
-        <a href={`http://localhost:3000/#/restaurant/${this.props.id}`} >{this.props.name}</a>
+        <a href={`/restotinder_react/#/restaurant/${this.props.id}`} >{this.props.name}</a>
         {this.props.iconClass === "maybe" ?
           <div className="buttonwrap">
           <button onClick={ () => { this.trashHandler(this.props.id) } }><i className="fa fa-trash-o fa-1x"></i></button>
