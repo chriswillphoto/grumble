@@ -36,13 +36,19 @@ class Home extends Component {
     this.submitHandler = this.submitHandler.bind(this)
     this.show_signup = this.show_signup.bind(this)
 
-    axios.get("https://grumblefood.herokuapp.com/restaurants").then(res => {
-      this.setState({rests: res.data})
-    })
-
-    axios.get("https://grumblefood.herokuapp.com/categories").then(res => {
-      this.setState({filterMenu: res.data})
-    })
+    axios.all([
+      axios.get("https://grumblefood.herokuapp.com/restaurants"),
+      axios.get("https://grumblefood.herokuapp.com/categories")
+    ]).then(axios.spread( (restRes, catRes) => {
+      this.setState({rests: restRes.data, filterMenu: catRes.data})
+    } ))
+    // .then(res => {
+    //   this.setState({rests: res.data})
+    // })
+    //
+    // .then(res => {
+    //   this.setState({filterMenu: res.data})
+    // })
 
     if(this.state.loggedIn){
       axios.get("https://grumblefood.herokuapp.com/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
@@ -71,6 +77,7 @@ class Home extends Component {
       this.setState({matched: filtered})
     }
   }
+
 
   loginHandler(details){
     const send = {email: details.email, password: details.password}
@@ -167,10 +174,13 @@ class Home extends Component {
     }
   }
 
+  // sets the flag for the pop up restaurant information bar
   popUpHandle(){
     const newState = !this.state.popUp
     this.setState({popUp: newState})
   }
+
+  // function further filters results under cuisine type
 
   foodTypeHandle(e){
     this.setState({foodType: e})
@@ -185,6 +195,8 @@ class Home extends Component {
       this.setState({matched: filtered2})
     }
   }
+
+  // function that handles the creation of a user
 
   submitHandler(e){
     console.log(e)
@@ -203,9 +215,9 @@ class Home extends Component {
       <div>
         <div id="map"></div>
         <Nav show_login={ () => this.show_login() } loggedIn={this.state.loggedIn} show_signup={ () => this.show_signup() }/>
-        {this.state.login_error ? <h1>{this.state.login_error}</h1> : ""}
-        {this.state.show_login ? <Login loginform={(i) => this.loginHandler(i)}/> : ""}
-        {this.state.show_signup ? <SignUp signup={(e) => this.submitHandler(e)}/> : ""}
+        {this.state.login_error && <h1>{this.state.login_error}</h1>}
+        {this.state.show_login && <Login loginform={(i) => this.loginHandler(i)}/> }
+        {this.state.show_signup && <SignUp signup={(e) => this.submitHandler(e)}/> }
         <h1 className="siteHeader left">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
         {this.state.filterMenu && this.state.matched ? <Categories menu={ this.state.filterMenu } foodType={(e) => this.foodTypeHandle(e)} /> : ""}
