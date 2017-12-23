@@ -12,8 +12,8 @@ import Nav from './Nav';
 
 
 class Home extends Component {
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this.state = {
       suburb: "",
       rests: [],
@@ -50,7 +50,6 @@ class Home extends Component {
       axios.get("https://grumblefood.herokuapp.com/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
         this.setState({current_user: res.data[0], user_faves: res.data[1], user_maybes: res.data[2] })
       })
-
     }
 
   };
@@ -172,8 +171,7 @@ class Home extends Component {
 
   // sets the flag for the pop up restaurant information bar
   popUpHandle(){
-    const newState = !this.state.popUp
-    this.setState({popUp: newState})
+    this.setState({popUp: !this.state.popUP})
   }
 
   // function further filters results under cuisine type
@@ -217,7 +215,7 @@ class Home extends Component {
         <h1 className="siteHeader left">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
         {this.state.filterMenu && this.state.matched ? <Categories menu={ this.state.filterMenu } foodType={(e) => this.foodTypeHandle(e)} /> : ""}
-        {this.state.matched ? <Restaurantviewer popUp={this.state.popUp}loggedIn={ this.state.loggedIn } show={() => this.popUpHandle()} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
+        {this.state.matched ? <Restaurantviewer popUp={this.state.popUp} loggedIn={ this.state.loggedIn } show={() => this.setState({popUp: !this.state.popUp})} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
 
 
 
