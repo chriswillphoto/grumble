@@ -37,7 +37,6 @@ class Home extends Component {
     this.show_signup = this.show_signup.bind(this)
 
     axios.get("https://grumblefood.herokuapp.com/restaurants").then(res => {
-
       this.setState({rests: res.data})
     })
 
@@ -64,7 +63,6 @@ class Home extends Component {
     }else{
       filtered = this.state.rests.filter( rest => { return rest.suburb.indexOf(e.suburb.toLowerCase()) !== -1 } )
     };
-
 
     if(filtered.length === 0){
       this.setState({matched: null, foodType: ""})
