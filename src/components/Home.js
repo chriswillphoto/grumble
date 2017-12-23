@@ -36,19 +36,15 @@ class Home extends Component {
     this.submitHandler = this.submitHandler.bind(this)
     this.show_signup = this.show_signup.bind(this)
 
+
+    //get request to server api to get list of restaurants and categories
     axios.all([
       axios.get("https://grumblefood.herokuapp.com/restaurants"),
       axios.get("https://grumblefood.herokuapp.com/categories")
     ]).then(axios.spread( (restRes, catRes) => {
       this.setState({rests: restRes.data, filterMenu: catRes.data})
     } ))
-    // .then(res => {
-    //   this.setState({rests: res.data})
-    // })
-    //
-    // .then(res => {
-    //   this.setState({filterMenu: res.data})
-    // })
+
 
     if(this.state.loggedIn){
       axios.get("https://grumblefood.herokuapp.com/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
