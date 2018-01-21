@@ -55,9 +55,7 @@ class DislikeButton extends Component {
   }
 
   unDislike(restaurant_id) {
-    axios.delete(`https://grumblefood.herokuapp.com/dislikes/${restaurant_id}/${this.state.current_user.id}`, {headers: {Authorization: this.state.loggedIn}}).then( results => {
-
-    })
+    axios.delete(`https://grumblefood.herokuapp.com/dislikes/${restaurant_id}/${this.state.current_user.id}`, {headers: {Authorization: this.state.loggedIn}})
 
   }
   render() {

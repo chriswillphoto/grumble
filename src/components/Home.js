@@ -45,7 +45,6 @@ class Home extends Component {
       this.setState({rests: restRes.data, filterMenu: catRes.data})
     } ))
 
-
     if(this.state.loggedIn){
       axios.get("https://grumblefood.herokuapp.com/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
         this.setState({current_user: res.data[0], user_faves: res.data[1], user_maybes: res.data[2] })
@@ -193,7 +192,6 @@ class Home extends Component {
   // function that handles the creation of a user
 
   submitHandler(e){
-    console.log(e)
     if(e.password === e.passwordconfirmation){
       axios.post("https://grumblefood.herokuapp.com/users", { user: {name: e.name, email: e.email, password: e.password, password_confirmation: e.passwordconfirmation}}).then( res => {
         this.setState({login_error: "Sign up successful, please log in", show_signup: null})
@@ -214,7 +212,7 @@ class Home extends Component {
         {this.state.show_signup && <SignUp signup={(e) => this.submitHandler(e)}/> }
         <h1 className="siteHeader left">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
-        {this.state.filterMenu && this.state.matched ? <Categories menu={ this.state.filterMenu } foodType={(e) => this.foodTypeHandle(e)} /> : ""}
+        {this.state.filterMenu && this.state.matched && <Categories menu={ this.state.filterMenu } foodType={(e) => this.foodTypeHandle(e)} /> }
         {this.state.matched ? <Restaurantviewer popUp={this.state.popUp} loggedIn={ this.state.loggedIn } show={() => this.setState({popUp: !this.state.popUp})} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
 
 

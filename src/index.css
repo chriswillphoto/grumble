@@ -385,9 +385,19 @@ font-weight: 700;
   padding: 20px;
   min-height: 350px;
   margin-left: 20px;
-  margin-top: 50px;
+  margin-top: 25px;
   display: inline-block;
   float: left;
+}
+
+
+.subInfoContainer * {
+  display: block;
+  margin: 5px 0;
+}
+
+.mapbox {
+  margin: 20px auto;
 }
 
 .descriptionText {
