@@ -12,8 +12,8 @@ import Nav from './Nav';
 
 
 class Home extends Component {
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this.state = {
       suburb: "",
       rests: [],
@@ -36,20 +36,19 @@ class Home extends Component {
     this.submitHandler = this.submitHandler.bind(this)
     this.show_signup = this.show_signup.bind(this)
 
-    axios.get("https://grumblefood.herokuapp.com/restaurants").then(res => {
 
-      this.setState({rests: res.data})
-    })
-
-    axios.get("https://grumblefood.herokuapp.com/categories").then(res => {
-      this.setState({filterMenu: res.data})
-    })
+    //get request to server api to get list of restaurants and categories
+    axios.all([
+      axios.get("https://grumblefood.herokuapp.com/restaurants"),
+      axios.get("https://grumblefood.herokuapp.com/categories")
+    ]).then(axios.spread( (restRes, catRes) => {
+      this.setState({rests: restRes.data, filterMenu: catRes.data})
+    } ))
 
     if(this.state.loggedIn){
       axios.get("https://grumblefood.herokuapp.com/profile", {headers: {Authorization: this.state.loggedIn}}).then(res => {
         this.setState({current_user: res.data[0], user_faves: res.data[1], user_maybes: res.data[2] })
       })
-
     }
 
   };
@@ -65,7 +64,6 @@ class Home extends Component {
       filtered = this.state.rests.filter( rest => { return rest.suburb.indexOf(e.suburb.toLowerCase()) !== -1 } )
     };
 
-
     if(filtered.length === 0){
       this.setState({matched: null, foodType: ""})
       alert("There are no more restaurants listed for this suburb, sorry")
@@ -73,6 +71,7 @@ class Home extends Component {
       this.setState({matched: filtered})
     }
   }
+
 
   loginHandler(details){
     const send = {email: details.email, password: details.password}
@@ -169,10 +168,12 @@ class Home extends Component {
     }
   }
 
+  // sets the flag for the pop up restaurant information bar
   popUpHandle(){
-    const newState = !this.state.popUp
-    this.setState({popUp: newState})
+    this.setState({popUp: !this.state.popUP})
   }
+
+  // function further filters results under cuisine type
 
   foodTypeHandle(e){
     this.setState({foodType: e})
@@ -188,8 +189,9 @@ class Home extends Component {
     }
   }
 
+  // function that handles the creation of a user
+
   submitHandler(e){
-    console.log(e)
     if(e.password === e.passwordconfirmation){
       axios.post("https://grumblefood.herokuapp.com/users", { user: {name: e.name, email: e.email, password: e.password, password_confirmation: e.passwordconfirmation}}).then( res => {
         this.setState({login_error: "Sign up successful, please log in", show_signup: null})
@@ -205,13 +207,13 @@ class Home extends Component {
       <div>
         <div id="map"></div>
         <Nav show_login={ () => this.show_login() } loggedIn={this.state.loggedIn} show_signup={ () => this.show_signup() }/>
-        {this.state.login_error ? <h1>{this.state.login_error}</h1> : ""}
-        {this.state.show_login ? <Login loginform={(i) => this.loginHandler(i)}/> : ""}
-        {this.state.show_signup ? <SignUp signup={(e) => this.submitHandler(e)}/> : ""}
+        {this.state.login_error && <h1>{this.state.login_error}</h1>}
+        {this.state.show_login && <Login loginform={(i) => this.loginHandler(i)}/> }
+        {this.state.show_signup && <SignUp signup={(e) => this.submitHandler(e)}/> }
         <h1 className="siteHeader left">Grumble</h1>
         <Searchbar query={(state) => { this.qHandle(state) }}/>
-        {this.state.filterMenu && this.state.matched ? <Categories menu={ this.state.filterMenu } foodType={(e) => this.foodTypeHandle(e)} /> : ""}
-        {this.state.matched ? <Restaurantviewer popUp={this.state.popUp}loggedIn={ this.state.loggedIn } show={() => this.popUpHandle()} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
+        {this.state.filterMenu && this.state.matched && <Categories menu={ this.state.filterMenu } foodType={(e) => this.foodTypeHandle(e)} /> }
+        {this.state.matched ? <Restaurantviewer popUp={this.state.popUp} loggedIn={ this.state.loggedIn } show={() => this.setState({popUp: !this.state.popUp})} matched={this.state.matched[0]} button={(e) => {this.yes(e)} } /> : "Please Enter A Sydney Suburb"}
 
 
 
