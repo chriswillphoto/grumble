@@ -27,5 +27,5 @@ The Grumble app solves the common question of: 'where / what should we eat? We h
 -
 
 ## Contributors
-Grumble was built as a collaborative effort between [Samantha Cordingly](https://github.com/SamanthaCord), [Liz Lai](https://github.com/MsSmall), and [Christopher Nekich](https://github.com/chriswillphoto)
+Grumble was built as a collaborative effort between [Samantha Cordingley](https://github.com/SamanthaCord), [Liz Lai](https://github.com/MsSmall), and [Christopher Nekich](https://github.com/chriswillphoto)
 
