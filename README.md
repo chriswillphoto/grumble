@@ -6,6 +6,7 @@ The maybes get added to a shortlist on the user's profile page where they can re
 Grumble makes you look and feel efficient!
 
 The Grumble app solves the common question of: 'where / what should we eat? We hope the answer to this question will soon be: 'I don't know, check Grumble'.
+![Grumble Screenshot](https://res.cloudinary.com/dyqesnour/image/upload/c_scale,q_60,w_680/v1517654579/Screen_Shot_2018-02-03_at_9.42.05_pm_cumd9p.png)
 
 ## Features:
 - Toggle between restaurants, rating them based on current mood for food
